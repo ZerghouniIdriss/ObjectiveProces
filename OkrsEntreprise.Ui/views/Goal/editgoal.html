@@ -1,0 +1,853 @@
+﻿<div>
+    <div class="col-lg-12">
+        <div class="portlet">
+            <!-- /primary heading -->
+            <div class="portlet-heading  ">
+                <div class="text-dark">
+                    <div class="portlet-title form-inline col-md-10">
+                        <div class="col-md-1 text-right">
+                            #{{editformData.id}}-
+                        </div>
+                        <div class="col-md-10 text-left" ng-include="gettitletemp()">
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-widgets">
+                    <label class="btn btn-{{ editformData.isopen ? 'default' : 'danger' }} " ng-click="editisopen()"> {{ editformData.isopen ? 'Open' : 'Closed' }}</label>
+                    <a class="btn btn-danger" ng-click="deletegoal()"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+            </div>
+
+            <div id="portlet2" class="panel-collapse collapse in">
+
+                <div class="portlet-body">
+                    <!--<div class="col-md-6">-->
+                    <!--<div class=
+                    "alert alert-danger" ng-show="ErrorMessage != ''">{{ ErrorMessage }}</div>-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="panel-default">
+                                    <div class="panel-body">
+                                        <div class="form-inline" ng-include="getheadertemp()">
+                                        </div>
+                                    </div> <!-- panel-body -->
+                                </div> <!-- panel -->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                                </div>
+                                <div class="col-md-4  col-sm-4 col-xs-4 text-center">
+                                    <div data-ng-click="chartType = 0" popover-animation="true" popover-template="'updateChartStatus.html'" popover-placement="top" popover-trigger="click" class="chart pointer overallChart" id="overallChart{{editformData.id}}" style="margin-bottom:30px;" data-percent="{{editformData.progress}}">{{editformData.progress}}%</div>
+                                    <a data-ng-click="chartType = 0" style="position:absolute; bottom:0; left:50px;text-decoration:underline" class="pointer" popover-animation="true" popover-template="'updateChartStatus.html'" popover-placement="top" popover-trigger="click">Progress</a>
+                                </div>
+                                <div class="col-md-4  col-sm-4 col-xs-4 text-center">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="panel-default">
+                                    <div class="panel-body">
+                                        <h4 class="panel-title" style="cursor:pointer;">Description -<a style="text-decoration:underline" ng-click="editdest()">Edit</a></h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-horizontal editdescriptiontextarea" ng-include="getdestemp()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="panel-default">
+                                    <div class="panel-body">
+                                        <h4 class="panel-title">Comments</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--<div class="row" ng-repeat="item in editformData.comments">
+                                            <div class="col-md-1">
+                                                <img class="m-r-10 thumb-sm br-radius" src="{{ item.user.Avatar }}" alt="member">
+                                                <h6 class="text-center" style="display:block;">{{item.user.name}}</h6>
+                                            </div>
+                                            <div class="col-md-2 pull-right" ng-show="currentUser(item)">
+                                                <i class="col-md-6 ion-edit" ng-click="editcomment(item)"></i>
+                                                <i class="col-md-6 ion-trash-a" ng-click="deletecomment($index)"></i>
+                                            </div>
+                                            <div class="col-md-7 m-l-10 middle-align" ng-include="getcomtemp(item)">
+
+                                            </div>
+                                        </div>-->
+                                        <div class="row">
+                                            <div class="form-horizontal" id="commentList" ng-repeat="item in editformData.comments">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 m-t-15">
+                                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                                        <img class="thumb-sm br-radius" src="{{ item.user.Avatar }}" alt="member">
+                                                        <h6 class="text-center" style="display:block;">{{item.user.name}}</h6>
+                                                    </div>
+                                                    <div class="col-md-11 col-sm-11 col-xs-11" id="editcommenttemp" ng-include="getcomtemp(item)"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <!--<div class="panel-footer white-bg text-center">
+                                            <hr class="m-b-10" />-->
+                                            <div class="col-md-12">
+                                                <input ng-model="NewUserComment" class="form-control" placeholder="Add new comment" ng-keydown="$event.which === 13 && addcomment()" />
+                                            </div>
+                                            <!--<div class="col-md-2 text-left">
+                                                <button class="btn btn-success   m-b-5" ng-click="addcomment()">+</button>
+                                            </div>-->
+                                            <!--</div>--> <!-- panel-footer-->
+                                        </div>
+                                    </div> <!--Panel-body -->
+                                </div> <!-- Panel-->
+
+                            </div>
+                        </div> <!-- col -->
+
+                        <div class="col-md-6">
+
+                            <!-- /Key Results panel-->
+                            <div class="row">
+
+                                <div class="portlet">
+                                    <!-- /primary heading -->
+                                    <div class="portlet-heading  ">
+
+                                        <h3 class="portlet-title text-dark">
+                                            Key Results
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <!--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>-->
+                                            <!--<span class="divider"></span>-->
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portletkr"><i class="ion-minus-round"></i></a>
+                                            <!--<span class="divider"></span>-->
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portletkr" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="panel-default">
+                                                    <div class="panel-body">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="panel-default">
+                                                        <div class="panel-body">
+                                                            <div class="form-horizontal" id="keyresultlist" ng-repeat="item in editformData.keyresults" ng-include="getkrtemp(item)">
+                                                            </div>
+                                                            <div class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <div class="col-xs-offset-1 col-sm-11">
+                                                                        <input type="text" class="form-control BorderZero" id="keyresult" name="keyresult"
+                                                                               placeholder="+ Add new Key Result" maxlength="150" ng-model="keyresulttitle"
+                                                                               ng-keydown="$event.which === 13 && addkeyresult()">
+
+                                                                        <span class="text-danger" ng-show="showKeymsg">Key result title is required.</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> <!-- panel-body -->
+                                                    </div> <!-- panel -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div> <!-- /Portlet -->
+
+                            </div>
+
+                            <!-- /Allignement panel-->
+                            <div class="row">
+
+                                <div class="portlet">
+                                    <!-- /primary heading -->
+                                    <div class="portlet-heading  ">
+                                        <h3 class="portlet-title text-dark">
+                                            Alignment
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <!--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>-->
+                                            <!--<span class="divider"></span>-->
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portletobj"><i class="ion-minus-round"></i></a>
+                                            <!--<span class="divider"></span>-->
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portletobj" class="panel-collapse collapse">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="panel-default">
+                                                        <!--<div class="panel-heading"><h3 class="panel-title">Horizontal form</h3></div>-->
+                                                        <div class="panel-body">
+
+                                                            <!--<div class="form-horizontal">
+
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12 text-right">
+                                                                        <button type="button" class="btn btn-success   m-b-5" ng-click="addnewgoal()">+Objective</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>-->
+
+                                                            <div class="form-horizontal">
+
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-4 control-label">Parent Objective</label>
+                                                                    <div class="col-sm-8">
+                                                                        <form data-editable-form id="selectUserManager" name="uiSelectForm">
+                                                                            <div class="row">
+                                                                                <div class="col-md-8">
+                                                                                    <div editable-ui-select="editformData.parent" onaftersave="UpdateParent()" ng-click="uiSelectForm.$show()" data-e-style="min-width:243px;margin:-12px 0px 0px 15px;" theme="bootstrap" data-e-ng-model="editformData.Manager">
+                                                                                        <div style="margin-top: 3px;">
+                                                                                            <label class="pointer" ng-bind="editformData.parent.title  || 'no parent selected'"></label>
+                                                                                        </div>
+                                                                                        <editable-ui-select-match placeholder="select parent">
+                                                                                            {{$select.selected.title}}
+                                                                                        </editable-ui-select-match>
+                                                                                        <editable-ui-select-choices repeat="item in goalList | filter: $select.search">
+                                                                                            {{item.title}}
+                                                                                        </editable-ui-select-choices>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4" style="margin:-12px 0px 0px 0px">
+                                                                                    <br />
+                                                                                    <div class="" ng-show="!uiSelectForm.$visible" ng-if="editformData.parent">
+                                                                                        <i class="ion-trash-a pointer" ng-click="deleteparentgoal()"></i>
+                                                                                    </div>
+                                                                                    <div ng-show="uiSelectForm.$visible">
+                                                                                        <button type="submit" class="btn btn-success" ng-disabled="uiSelectForm.$waiting">
+                                                                                            <i class="ion-checkmark-round"></i>
+                                                                                        </button>
+                                                                                        <button type="button" class="btn btn-default" ng-disabled="uiSelectForm.$waiting" ng-click="uiSelectForm.$cancel()">
+                                                                                            <i class="ion-close-round"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                        <!--<select id="parentSelect{{editformData.id}}" class="select2 selectdd">
+
+                                                                            <option value="">Select Objective</option>
+                                                                            <option value="{{item.id}}" ng-repeat="item in goalList">#{{item.id }}- {{ item.title }}</option>
+
+                                                                        </select>-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--<div class="form-horizontal" ng-hide="editformData.parent == null">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-4 control-label">Selected Parent </label>
+                                                                    <h6 class="col-sm-7"><a href="/index.html#/editgoal/{{ editformData.parent.id }}"> {{editformData.parent.title }}</a></h6>
+                                                                    <div class="col-sm-1">
+                                                                        <i class="ion-trash-a" ng-click="deleteparentgoal()"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>-->
+
+
+                                                            <div class="form-horizontal">
+
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-4 control-label">Child Objective</label>
+                                                                    <div class="col-sm-6">
+                                                                        <select id="childrenSelect{{editformData.id}}" class="select2 selectdd">
+
+                                                                            <option value="">Select Objective</option>
+                                                                            <option value="{{item.id}}" ng-repeat="item in goalList">#{{item.id }}- {{item.Id +item.title }}</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <button type="button" class="btn btn-success   m-b-5" ng-click="addchildgoal()">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-horizontal" ng-repeat="item in editformData.children">
+                                                                <div class="form-group">
+                                                                    <h6 class="col-sm-offset-4 col-sm-7"> <a href="/index.html#/editgoal/{{ item.id }}">#{{item.id}}</a>- {{item.title }}</h6>
+                                                                    <div class="col-sm-1">
+                                                                        <i class="ion-trash-a" ng-click="deletechildgoal($index)"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div> <!-- panel-body -->
+                                                    </div> <!-- panel -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div> <!-- /Portlet -->
+
+                            </div>
+
+                            <!-- /Poepole panel-->
+                            <div class="row">
+
+                                <div class="portlet">
+                                    <!-- /primary heading -->
+                                    <div class="portlet-heading  ">
+                                        <h3 class="portlet-title text-dark">
+                                            People
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <!--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>-->
+                                            <!--<span class="divider"></span>-->
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portletpeople"><i class="ion-minus-round"></i></a>
+                                            <!--<span class="divider"></span>-->
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div id="portletpeople" class="panel-collapse collapse">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="panel-default">
+                                                        <!--<div class="panel-heading"><h3 class="panel-title">Horizontal form</h3></div>-->
+                                                        <div class="panel-body">
+
+                                                            <div class="row form-inline m-b-10" style="vertical-align:top;">
+
+                                                                <div class="form-group col-md-4" style="vertical-align:top;">
+                                                                    <label class="control-label">Assign to</label>
+                                                                </div>
+
+                                                                <div class="form-group  col-md-5">
+
+                                                                    <div isteven-multi-select
+                                                                         input-model="assigneeList"
+                                                                         output-model="editformData.assignees"
+                                                                         button-label="icon name"
+                                                                         item-label="icon name maker"
+                                                                         tick-property="ticked"
+                                                                         group-property="msGroup"
+                                                                         output-properties="id isteam name Avatar">
+                                                                    </div>
+
+
+                                                                </div>
+
+                                                                <div class="col-md-3 text-right" style="vertical-align:top;">
+                                                                    <button type="button" class="btn btn-success   m-b-5" ng-click="assigeensto()">+</button>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row form-inline m-b-10" style="vertical-align:top;">
+
+                                                                <div class="form-group col-md-4" style="vertical-align:top;">
+                                                                    <label class="control-label">Assigned Users</label>
+                                                                </div>
+
+                                                                <div class="form-group  col-md-5">
+
+                                                                    <div class="col-md-4" ng-repeat="item in editformData.users">
+                                                                        <img class="m-r-5 thumb-sm br-radius pointer" src="{{ item.Avatar }}" alt="member"
+                                                                             data-ng-click="chartType = 0"
+                                                                             popover-animation="true"
+                                                                             popover-template="'UnassignUser.html'"
+                                                                             popover-placement="bottom"
+                                                                             popover-trigger="click">
+
+                                                                        <h6 class="text-left" data-toggle="tooltip" title="{{item.name}}" style="display:block;text-overflow:ellipsis;overflow:hidden">{{ item.name }}</h6>
+                                                                    </div>
+
+                                                                    <div class="col-md-4" ng-repeat="item in editformData.teams">
+
+                                                                        <img class="m-l-10 thumb-sm br-radius" src="{{ item.Avatar }}" alt="member"
+                                                                             data-ng-click="chartType = 0"
+                                                                             popover-animation="true"
+                                                                             popover-template="'UnassignUser.html'"
+                                                                             popover-placement="bottom"
+                                                                             popover-trigger="click">
+
+                                                                        <h6 class="text-left" data-toggle="tooltip" title="{{item.name}}" style="display:block;text-overflow:ellipsis;overflow:hidden">{{ item.name }}</h6>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group col-md-3  text-right" style="vertical-align:top;">
+                                                                    <button type="button" class="btn btn-success   m-b-5" ng-click="assigngoal()"> {{ isassign ? 'Remove me' : 'Assign me' }}</button>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row form-inline" style="vertical-align:top;" has-permission="/objectiveFollowedBy">
+
+                                                                <div class="form-group col-md-4" style="vertical-align:top;">
+                                                                    <label class="control-label">Followed By</label>
+                                                                </div>
+
+                                                                <div class="form-group  col-md-5">
+
+                                                                    <div class="col-md-3">
+                                                                        <img class="m-r-10 thumb-sm br-radius" src="images/user.png" alt="member">
+                                                                        <h6 class="text-center" style="display:block;">User1</h6>
+                                                                    </div>
+
+                                                                    <div class="col-md-3">
+                                                                        <img class="m-r-10 thumb-sm br-radius" src="images/user.png" alt="member">
+                                                                        <h6 class="text-center" style="display:block;">User2</h6>
+                                                                    </div>
+
+                                                                    <div class="col-md-3">
+                                                                        <img class="m-r-10 thumb-sm br-radius" src="images/user.png" alt="member">
+                                                                        <h6 class="text-center" style="display:block;">User3</h6>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group col-md-3 text-right" style="vertical-align:top;">
+                                                                    <button type="button" class="btn btn-success   m-b-5" ng-click="">Follow</button>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div> <!-- panel-body -->
+                                                    </div> <!-- panel -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div> <!-- /Portlet -->
+
+                            </div>
+                            <div has-permission="/recognition" class="row">
+
+                                <div class="portlet">
+                                    <!-- /primary heading -->
+                                    <div class="portlet-heading  ">
+
+                                        <h3 class="portlet-title text-dark">
+                                            Recognition
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <!--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>-->
+                                            <!--<span class="divider"></span>-->
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portletrecognition"><i class="ion-minus-round"></i></a>
+                                            <!--<span class="divider"></span>-->
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portletrecognition" class="panel-collapse collapse">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="panel-default">
+                                                        <!--<div class="panel-heading"><h3 class="panel-title">Horizontal form</h3></div>-->
+                                                        <div class="panel-body">
+
+                                                            <div ng-repeat="recognition in editformData.recognitions">
+                                                                <displayrecognition recognition="recognition"></displayrecognition>
+                                                            </div>
+
+                                                        </div> <!-- panel-body -->
+                                                    </div> <!-- panel -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div> <!-- /Portlet -->
+
+                            </div>
+
+                            <!-- /Indicator panel-->
+                            <div has-permission="/recognition" class="row">
+                                <div class="portlet">
+                                    <!-- /primary heading -->
+                                    <div class="portlet-heading  ">
+
+                                        <h3 class="portlet-title text-dark">
+                                            Indicators
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <!--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>-->
+                                            <!--<span class="divider"></span>-->
+                                            <a ng-click="refreshindicatorpanel()" data-toggle="collapse" data-parent="#accordion1" href="/goal#portletindicator"><i class="ion-minus-round"></i></a>
+                                            <!--<span class="divider"></span>-->
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portletindicator" class="panel-collapse collapse">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="panel-default">
+                                                        <!--<div class="panel-heading"><h3 class="panel-title">Horizontal form</h3></div>-->
+                                                        <div class="panel-body">
+                                                            <div ng-repeat="Indicator in indicatorList" class="form-horizontal">
+                                                                <div class="row">
+                                                                    <label class="col-md-3 control-label">{{Indicator.Title}}</label>
+                                                                    <div class="col-md-9">
+                                                                        <a id="inline-indicator-{{$index}}" data-type="select" data-pk="1" data-value="" data-title=""></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- panel-body -->
+                                                </div> <!-- panel -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div> <!-- /Portlet -->
+
+
+                        </div> <!-- col -->
+
+                    </div> <!-- End row -->
+                    <!--</div>-->
+                </div>
+
+            </div> <!-- /Portlet -->
+
+        </div> <!-- end col -->
+    </div>
+
+    <script type="text/ng-template" id="edittitle">
+        <input ng-model="editformData.title" class="form-control" />
+        <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatetitle()"></span>
+        <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resettitle()"></span>
+    </script>
+
+    <script type="text/ng-template" id="distitle">
+        <div class="col-md-12 form-group text-left" id="displaytitle">
+            <!--<div class="col-md-10"> {{ editformData.title}}</div>-->
+            <div class="col-md-10 pointer" onbeforesave="updatetitle($data)" editable-text="editformData.title"> {{ editformData.title|| 'empty' }}</div>
+
+            <!--<div class="col-md-2 edittitlebutton"><span class="ion-edit" ng-click="edittitle()"></span></div>-->
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="edtstus">
+        <div class="form-group col-md-4">
+            <select class="form-control" ng-model="editformData.status" ng-options="item.title for item in goalstatusList" ng-change="updatestus()"></select>
+            <!--<span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatestus()"></span>-->
+            <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetstus()"></span>
+        </div>
+        <div class="form-group  col-md-1">
+            <h6><displaypriority value="editformData.priority"></displaypriority></h6>
+        </div>
+        <div class="form-group  col-md-2">
+            <h6>{{ editformData.category.title }}</h6>
+        </div>
+
+        <div class="form-group col-md-1 text-left">
+            <h6>{{ editformData.isprivate ? "Private" : "Public" }}</h6>
+        </div>
+
+        <div class="form-group col-md-4">
+            <h6>Due Date, {{ editformData.duedate | date:'MM/dd/yyyy' }}</h6>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="edtprio">
+        <div class="form-group col-md-1">
+            <h6>{{ editformData.status.title }}</h6>
+        </div>
+        <div class="form-group  col-md-5">
+            <prioritybox value="oldPriority" onchange="priorityOnChange(val)"></prioritybox>
+            <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetPriority()"></span>
+        </div>
+        <div class="form-group  col-md-2">
+            <h6>{{ editformData.category.title }}</h6>
+        </div>
+
+        <div class="form-group col-md-1 text-left">
+            <h6>{{ editformData.isprivate ? "Private" : "Public" }}</h6>
+        </div>
+
+        <div class="form-group col-md-3">
+            <h6>Due Date, {{ editformData.duedate | date:'MM/dd/yyyy' }}</h6>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="edtcat">
+        <div class="form-group col-md-2">
+            <h6>{{ editformData.status.title }}</h6>
+        </div>
+        <div class="form-group col-md-1">
+            <h6><displaypriority value="editformData.priority"></displaypriority></h6>
+        </div>
+        <div class="form-group  col-md-4">
+            <select class="form-control" ng-model="editformData.category" ng-options="item.title for item in goalcatList" ng-change="updatecat()"></select>
+            <!--<span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatecat()"></span>-->
+            <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetcat()"></span>
+        </div>
+        <div class="form-group col-md-2">
+
+            <h6>{{ editformData.isprivate ? "Private" : "Public" }}</h6>
+        </div>
+
+        <div class="form-group col-md-3">
+            <h6>Due Date, {{ editformData.duedate | date:'MM/dd/yyyy' }}</h6>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="edtpvt">
+        <div class="form-group col-md-2">
+            <h6>{{ editformData.status.title }}</h6>
+        </div>
+        <div class="form-group col-md-1">
+            <h6><displaypriority value="editformData.priority"></displaypriority></h6>
+        </div>
+        <div class="form-group  col-md-2">
+            <h6>{{ editformData.category.title }}</h6>
+        </div>
+        <div class="form-group col-md-4">
+            <!--<label>Private</label>-->
+            <select class="form-control" ng-model="editformData.isprivate" ng-options="opt as opt.label for opt in privateoptions" ng-change="updatepvt()"></select>
+            <!--<input type="checkbox" style="width: 16px" class="checkbox form-control" id="disprivate" name="disprivate" ng-model="editformData.isprivate" ng-change="updatepvt()">-->
+            <!--<span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatepvt()"></span>-->
+            <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetpvt()"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <h6>Due Date, {{ editformData.duedate | date:'MM/dd/yyyy' }}</h6>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="edtdd">
+        <div class="form-group col-md-2">
+            <h6>{{ editformData.status.title }}</h6>
+        </div>
+        <div class="form-group col-md-1">
+            <h6><displaypriority value="editformData.priority"></displaypriority></h6>
+        </div>
+        <div class="form-group  col-md-2">
+            <h6>{{ editformData.category.title }}</h6>
+        </div>
+        <div class="form-group col-md-1">
+            <h6>{{ editformData.isprivate ? "Private" : "Public" }}</h6>
+        </div>
+
+        <div class="form-group col-md-6">
+            <datepicker720 date-format="{{format}}"
+                           button-prev='
+                <i class="fa fa-arrow-circle-left"></i>'
+                button-next='<i class="fa fa-arrow-circle-right"></i>'>
+                <input ng-model="editformData.duedate" type="text" class="form-control font-fontawesome font-light radius3" placeholder="Choose a date" ng-change="updateduedate()" />
+                <!--<span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updateduedate()"></span>-->
+                <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetduedate()"></span>
+            </datepicker720>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="dishdr">
+        <div class="form-group col-md-2 text-center">
+            <u><a ng-click="editstatus()">{{ editformData.status.title }}</a></u>
+        </div>
+
+        <div class="form-group col-md-2 text-center">
+            <u><a ng-click="editPriority()"><displaypriority value="editformData.priority"></displaypriority></a></u>
+        </div>
+
+        <div class="form-group  col-md-2 text-center">
+            <u><a ng-click="editcategory()">{{ editformData.category.title }}</a></u>
+        </div>
+
+        <div class="form-group col-md-1 text-center">
+            <u><a ng-click="editisprivate()">{{ editformData.isprivate ? "Private" : "Public" }}</a></u>
+        </div>
+
+        <div class="form-group col-md-4 text-center">
+            <u><a ng-click="editduedate()">Due Date, {{ editformData.duedate | date:'MM/dd/yyyy' }}</a></u>
+        </div>
+    </script>
+
+
+
+
+    <script type="text/ng-template" id="disdes">
+        <div class="col-md-11">
+            <!--<textarea class="form-control" rows="4" id="ddescription" name="ddescription" maxlength="1000" ng-disabled="!editdes" ng-model="editformData.description"></textarea>-->
+            <span class="goal-description-display" ng-bind-html="trustedDescription"></span>
+        </div>
+        <div class="col-md-1 text-right editdescriptionbutton">
+            <i class="ion-edit" ng-click="editdest()"></i>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="edtdes">
+        <div class="col-md-12">
+            <!--<textarea class="form-control" rows="4" id="ddescription" name="ddescription" maxlength="1000" ng-disabled="!editdes" ng-model="editformData.description"></textarea>-->
+            <div class="summernote"></div>
+        </div>
+        <div class="col-md-12 text-right m-t-5">
+            <!--<div class="col-md-2">-->
+            <button class="btn btn-success ion-checkmark-round" style="cursor:pointer;" ng-click="updatedes()"></button>
+            <!--</div>
+            <div class="col-md-2">-->
+            <button class="btn btn-success ion-close-round" style="cursor:pointer;" ng-click="resetdes()"></button>
+            <!--</div>-->
+        </div>
+        <script type="text/javascript">
+            /* ==============================================
+                              Counter Up
+               =============================================== */
+            jQuery(document).ready(function ($) {
+                $('.summernote').summernote({
+                    height: 200,                 // set editor height
+
+                    minHeight: null,             // set minimum height of editor
+                    maxHeight: null,             // set maximum height of editor
+
+                    focus: false                 // set focus to editable area after initializing summernote
+                });
+            });
+        </script>
+
+    </script>
+
+
+    <script type="text/ng-template" id="discomment">
+        <!--<div class="col-md-11">-->
+        <!--<div class="col-md-2 col-sm-2 col-xs-2 pull-right m-t-10 editcommentbutton" ng-show="currentUser(item)">
+            <i class="col-md-6 ion-edit" ng-click="editcomment(item)"></i>
+            <i class="col-md-6 ion-trash-a" ng-click="deletecomment($index)"></i>
+        </div>-->
+        <div class="col-md-12 col-sm-12 col-xs-12 middle-align">
+            <label class="BorderZero pointer" onbeforesave="updatecomment($index,$data)" editable-text="item.text">
+                {{ item.text|| 'empty' }}
+                <!--<i class="col-md-2 col-sm-2 col-xs-2 ion-trash-a pull-right" ng-click="deletecomment($index)"></i>-->
+            </label>
+            <!--<span class="text-dark">{{item.text}}</span>-->
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-6 m-t-10 editcommentbutton" ng-show="currentUser(item)">
+            <!--<i class="col-md-2 col-sm-2 col-xs-2 ion-edit pull-left" ng-click="editcomment(item)"></i>-->
+            <i class="col-md-2 col-sm-2 col-xs-2 ion-trash-a pull-left pointer" ng-click="deletecomment($index)"></i>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 m-t-10">
+            <span class="pull-right text-muted"><small>{{timeAgo(item.createddate)}}</small></span>
+        </div>
+
+        <!--</div>-->
+    </script>
+
+    <script type="text/ng-template" id="editcomment">
+        <div class="form-inline">
+            <!--<div class="col-md-11 col-sm-11 col-xs-11">
+                <input ng-model="selcom.text" class="form-control" style="width:100%;" ng-keydown="$event.which === 13 && updatecomment($index)" />
+            </div>-->
+            <!--<div class="col-md-1">
+                <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatecomment($index)"></span>
+            </div>-->
+            <!--<div class="col-md-1 col-sm-1 col-xs-1">
+                <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetcomment()"></span>
+            </div>-->
+
+        </div>
+    </script>
+
+
+    <script type="text/ng-template" id="krdis">
+        <div class="form-group" style="margin-left:11%;">
+            <label class="BorderZero pointer" onbeforesave="updatekr($data, $index)" editable-text="item.title"> {{ item.title|| 'empty' }}</label>
+
+            <!--<h6 class="col-sm-offset-1 col-sm-9"> {{ item.title }}</h6>
+            <div class="col-sm-1">
+                <span class="ion-edit editkrbutton" style="cursor:pointer;" ng-click="editkr(item)"></span>
+            </div>
+            <div class="col-sm-1">
+                <span class="ion-trash-a deletekrbutton" style="cursor:pointer;" ng-click="deletekr($index)"></span>
+            </div>-->
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="kredit">
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-9">
+                <input class="form-control" type="text" name="selkr" ng-model="selkr.title" />
+            </div>
+            <div class="col-xs-1">
+                <span class="ion-checkmark-round" style="cursor:pointer;" ng-click="updatekr($index)"></span>
+            </div>
+            <div class="col-xs-1">
+                <span class="ion-close-round" style="cursor:pointer;" ng-click="resetkr()"></span>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        var parselect;
+
+        jQuery(document).ready(function () {
+
+            // Select2
+            //parselect = jQuery("#parentSelect").select2({
+            //    width: '100%'
+            //});
+
+            //childselect = jQuery("#childrenSelect").select2({
+            //    width: '100%'
+            //});
+
+
+        });
+    </script>
+
+    <script type="text/ng-template" id="updateChartStatus.html">
+        <div class="animated fadeIn popoverFade" ng-form="newKeyForm">
+            <div class="row">
+
+                <div class="col-md-5 text-right" style="padding-right:0px;">
+                    <input type="number" max="100" style="padding-right:0px;" ng-model="editformData.newprogress" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-touched" required>
+                </div>
+                <div class="col-md-2" style="padding-left:2px;">
+                    <h4>%</h4>
+                </div>
+                <div class="col-md-3 text-right" style="padding-left:5px; padding-right:0px;">
+                    <button ng-disabled="newKeyForm.$invalid" class="btn btn-success " type="button" ng-click="updateprogress()" id="addKeyBtn"><span>Ok</span></button>
+                </div>
+
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="UnassignUser.html">
+        <div class="animated fadeIn popoverFade" ng-form="newKeyForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <button ng-disabled="newKeyForm.$invalid" class="btn btn-danger" type="button" ng-click="UnassignUser(item,$index)" id="addKeyBtn"><span>Unassign</span></button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+</div>

@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7DA6639D-5485-47C6-A1C2-56B4EC248FFD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OkrsEntreprise.Ui</RootNamespace>
+    <AssemblyName>OkrsEntreprise.Ui</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="assets\angular-confirm\angular-bootstrap-confirm.js" />
+    <Content Include="assets\angular-confirm\angular-sanitize.min.js" />
+    <Content Include="assets\bootstrap-calendar\bic_calendar.css" />
+    <Content Include="assets\bootstrap-calendar\bic_calendar.min.js" />
+    <Content Include="assets\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="assets\bootstrap-tagautocomplete\bootstrap-tagautocomplete.js" />
+    <Content Include="assets\bootstrap-tagautocomplete\bootstrap-typeahead.js" />
+    <Content Include="assets\bootstrap-tagautocomplete\bootstrap.css" />
+    <Content Include="assets\bootstrap-tagautocomplete\caret-position.js" />
+    <Content Include="assets\bootstrap-tagautocomplete\rangy-core.js" />
+    <Content Include="assets\bootstrap-wysihtml5\bootstrap-wysihtml5.css" />
+    <Content Include="assets\bootstrap-wysihtml5\bootstrap-wysihtml5.js" />
+    <Content Include="assets\bootstrap-wysihtml5\wysihtml5-0.3.0.js" />
+    <Content Include="assets\bootstrap-wysihtml5\wysiwyg-color.css" />
+    <Content Include="assets\bootstrap3-editable\bootstrap-editable.css" />
+    <Content Include="assets\bootstrap3-editable\bootstrap-editable.js" />
+    <Content Include="assets\bootstrap3-editable\clear.png" />
+    <Content Include="assets\bootstrap3-editable\demo-xeditable.js" />
+    <Content Include="assets\bootstrap3-editable\loading.gif" />
+    <Content Include="assets\bootstrap3-editable\moment.min.js" />
+    <Content Include="assets\c3-chart\c3-chart.init.js" />
+    <Content Include="assets\c3-chart\c3.css" />
+    <Content Include="assets\c3-chart\c3.js" />
+    <Content Include="assets\c3-chart\d3.v3.min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap2\css\bootstrap-responsive.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap2\css\bootstrap.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap2\img\glyphicons-halflings-white.png" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap2\img\glyphicons-halflings.png" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap2\js\bootstrap.min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\css\bootstrap-theme.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\css\bootstrap-theme.min.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\css\bootstrap.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\css\bootstrap.min.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\js\bootstrap.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\js\bootstrap.min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\jquery\jquery.min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\jstimezonedetect\jstz.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\jstimezonedetect\jstz.min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\jstimezonedetect\LICENCE.txt" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\underscore\underscore-min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\css\calendar.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\css\calendar.min.css" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\Gruntfile.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\img\dark_wood.png" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\img\slide-bg.png" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\img\tick.png" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\index-bs3.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\index.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\app.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\calendar.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\calendar.min.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\ar-SA.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\bg-BG.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\bs-BA.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\cs-CZ.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\da-DK.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\de-AT.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\de-DE.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\el-GR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\es-CO.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\es-ES.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\es-MX.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\fi-FI.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\fr-FR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\hr-HR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\hu-HU.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\id-ID.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\it-IT.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\ja-JP.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\ko-KR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\nl-NL.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\no-NO.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\pl-PL.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\pt-BR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\ro-RO.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\ru-RU.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\sk-SR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\sl-SL.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\sv-SE.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\template.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\tr-TR.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\zh-CN.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\js\language\zh-TW.js" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\day.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\events-list.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\modal.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\month-day.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\month.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\week-days.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\week.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\year-month.html" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\tmpls\year.html" />
+    <Content Include="assets\calendar\calendar-conf.js" />
+    <Content Include="assets\calendar\calendar.css" />
+    <Content Include="assets\calendar\calendar.js" />
+    <Content Include="assets\calendar\tmpls\day.html" />
+    <Content Include="assets\calendar\tmpls\events-list.html" />
+    <Content Include="assets\calendar\tmpls\modal.html" />
+    <Content Include="assets\calendar\tmpls\month-day.html" />
+    <Content Include="assets\calendar\tmpls\month.html" />
+    <Content Include="assets\calendar\tmpls\week-days.html" />
+    <Content Include="assets\calendar\tmpls\week.html" />
+    <Content Include="assets\calendar\tmpls\year-month.html" />
+    <Content Include="assets\calendar\tmpls\year.html" />
+    <Content Include="assets\chartjs\chart.min.js" />
+    <Content Include="assets\chartjs\chartjs.init.js" />
+    <Content Include="assets\chat\moment-2.2.1.js" />
+    <Content Include="assets\codemirror\ambiance.css" />
+    <Content Include="assets\codemirror\codemirror.css" />
+    <Content Include="assets\codemirror\codemirror.js" />
+    <Content Include="assets\codemirror\custom.codemirror.js" />
+    <Content Include="assets\codemirror\formatting.js" />
+    <Content Include="assets\codemirror\javascript.js" />
+    <Content Include="assets\codemirror\xml.js" />
+    <Content Include="assets\colorpicker\bootstrap-colorpicker.js" />
+    <Content Include="assets\colorpicker\colorpicker.css" />
+    <Content Include="assets\colorpicker\img\alpha.png" />
+    <Content Include="assets\colorpicker\img\hue.png" />
+    <Content Include="assets\colorpicker\img\saturation.png" />
+    <Content Include="assets\cropper\cropper-conf.js" />
+    <Content Include="assets\cropper\cropper.css" />
+    <Content Include="assets\cropper\cropper.min.js" />
+    <Content Include="assets\datatables\buttons.bootstrap.min.css" />
+    <Content Include="assets\datatables\buttons.bootstrap.min.js" />
+    <Content Include="assets\datatables\buttons.html5.min.js" />
+    <Content Include="assets\datatables\buttons.print.min.js" />
+    <Content Include="assets\datatables\dataTables.bootstrap.js" />
+    <Content Include="assets\datatables\dataTables.buttons.min.js" />
+    <Content Include="assets\datatables\dataTables.fixedHeader.min.js" />
+    <Content Include="assets\datatables\dataTables.keyTable.min.js" />
+    <Content Include="assets\datatables\dataTables.responsive.min.js" />
+    <Content Include="assets\datatables\dataTables.scroller.min.js" />
+    <Content Include="assets\datatables\fixedHeader.bootstrap.min.css" />
+    <Content Include="assets\datatables\images\back_disabled.png" />
+    <Content Include="assets\datatables\images\back_enabled.png" />
+    <Content Include="assets\datatables\images\back_enabled_hover.png" />
+    <Content Include="assets\datatables\images\favicon.ico" />
+    <Content Include="assets\datatables\images\forward_disabled.png" />
+    <Content Include="assets\datatables\images\forward_enabled.png" />
+    <Content Include="assets\datatables\images\forward_enabled_hover.png" />
+    <Content Include="assets\datatables\images\sort_asc.png" />
+    <Content Include="assets\datatables\images\sort_asc_disabled.png" />
+    <Content Include="assets\datatables\images\sort_both.png" />
+    <Content Include="assets\datatables\images\sort_desc.png" />
+    <Content Include="assets\datatables\images\sort_desc_disabled.png" />
+    <Content Include="assets\datatables\jquery.dataTables.min.css" />
+    <Content Include="assets\datatables\jquery.dataTables.min.js" />
+    <Content Include="assets\datatables\jszip.min.js" />
+    <Content Include="assets\datatables\pdfmake.min.js" />
+    <Content Include="assets\datatables\responsive.bootstrap.min.css" />
+    <Content Include="assets\datatables\responsive.bootstrap.min.js" />
+    <Content Include="assets\datatables\scroller.bootstrap.min.css" />
+    <Content Include="assets\datatables\sort_asc.png" />
+    <Content Include="assets\datatables\sort_asc_disabled.png" />
+    <Content Include="assets\datatables\sort_both.png" />
+    <Content Include="assets\datatables\sort_desc.png" />
+    <Content Include="assets\datatables\sort_desc_disabled.png" />
+    <Content Include="assets\datatables\vfs_fonts.js" />
+    <Content Include="assets\datepicker\datepicker.css" />
+    <Content Include="assets\datepicker\datepicker.js" />
+    <Content Include="assets\dropzone\dropzone.css" />
+    <Content Include="assets\dropzone\dropzone.min.js" />
+    <Content Include="assets\dropzone\spritemap%402x.png" />
+    <Content Include="assets\dropzone\spritemap.png" />
+    <Content Include="assets\easypie-chart\easypiechart.min.js" />
+    <Content Include="assets\easypie-chart\example.js" />
+    <Content Include="assets\easypie-chart\jquery.easypiechart.min.js" />
+    <Content Include="assets\flot-chart\jquery.flot.crosshair.js" />
+    <Content Include="assets\flot-chart\jquery.flot.init.js" />
+    <Content Include="assets\flot-chart\jquery.flot.js" />
+    <Content Include="assets\flot-chart\jquery.flot.pie.js" />
+    <Content Include="assets\flot-chart\jquery.flot.resize.js" />
+    <Content Include="assets\flot-chart\jquery.flot.selection.js" />
+    <Content Include="assets\flot-chart\jquery.flot.stack.js" />
+    <Content Include="assets\flot-chart\jquery.flot.time.js" />
+    <Content Include="assets\flot-chart\jquery.flot.tooltip.min.js" />
+    <Content Include="assets\font-awesome\css\font-awesome.css" />
+    <Content Include="assets\font-awesome\css\font-awesome.min.css" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\form-wizard\bootstrap-validator.min.js" />
+    <Content Include="assets\form-wizard\jquery.steps.css" />
+    <Content Include="assets\form-wizard\jquery.steps.min.js" />
+    <Content Include="assets\form-wizard\wizard-init.js" />
+    <Content Include="assets\fullcalendar\bootstrap-fullcalendar.css" />
+    <Content Include="assets\fullcalendar\calendar-init.js" />
+    <Content Include="assets\fullcalendar\dragging-calendar-event-init.js" />
+    <Content Include="assets\fullcalendar\external-dragging-calendar.js" />
+    <Content Include="assets\fullcalendar\fullcalendar.css" />
+    <Content Include="assets\fullcalendar\fullcalendar.min.js" />
+    <Content Include="assets\fullcalendar\moment.min.js" />
+    <Content Include="assets\globalize\globalize.min.js" />
+    <Content Include="assets\gmaps\gmaps-plugin.js" />
+    <Content Include="assets\gmaps\gmaps.js" />
+    <Content Include="assets\ion-rangeslider\ion.rangeSlider.css" />
+    <Content Include="assets\ion-rangeslider\ion.rangeSlider.min.js" />
+    <Content Include="assets\ion-rangeslider\ion.rangeSlider.skinFlat.css" />
+    <Content Include="assets\ion-rangeslider\sprite-skin-flat.png" />
+    <Content Include="assets\ion-rangeslider\ui-sliders.js" />
+    <Content Include="assets\ionicon\css\ionicons.css" />
+    <Content Include="assets\ionicon\css\ionicons.min.css" />
+    <Content Include="assets\ionicon\fonts\ionicons.svg" />
+    <Content Include="assets\jquery-datatables-editable\dataTables.bootstrap.js" />
+    <Content Include="assets\jquery-datatables-editable\datatables.css" />
+    <Content Include="assets\jquery-datatables-editable\datatables.editable.init.js" />
+    <Content Include="assets\jquery-datatables-editable\jquery.dataTables.js" />
+    <Content Include="assets\jquery-knob\excanvas.js" />
+    <Content Include="assets\jquery-knob\jquery.knob.js" />
+    <Content Include="assets\jquery-multi-select\img\switch.png" />
+    <Content Include="assets\jquery-multi-select\jquery.multi-select.js" />
+    <Content Include="assets\jquery-multi-select\jquery.quicksearch.js" />
+    <Content Include="assets\jquery-multi-select\multi-select.css" />
+    <Content Include="assets\jquery-ui\jquery-ui.css" />
+    <Content Include="assets\jquery-ui\jquery-ui.min.js" />
+    <Content Include="assets\jquery.validate\form-validation-init.js" />
+    <Content Include="assets\jquery.validate\jquery.validate.min.js" />
+    <Content Include="assets\jvectormap\gdp-data.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-2.0.2.css" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-2.0.2.min.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-asia-mill.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-au-mill.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-ca-lcc.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-de-mill.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-europe-mill-en.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-in-mill.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-uk-mill-en.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <Content Include="assets\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="assets\jvectormap\jvectormap.init.js" />
+    <Content Include="assets\liteaccordian\examples.css" />
+    <Content Include="assets\liteaccordian\jquery.zaccordion.js" />
+    <Content Include="assets\magnific-popup\magnific-popup.css" />
+    <Content Include="assets\magnific-popup\magnific-popup.js" />
+    <Content Include="assets\material-design-iconic-font\css\material-design-iconic-font.css" />
+    <Content Include="assets\material-design-iconic-font\css\material-design-iconic-font.min.css" />
+    <Content Include="assets\material-design-iconic-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="assets\modal-effect\css\component.css" />
+    <Content Include="assets\modal-effect\js\classie.js" />
+    <Content Include="assets\modal-effect\js\modalEffects.js" />
+    <Content Include="assets\morris\morris.css" />
+    <Content Include="assets\morris\morris.init.js" />
+    <Content Include="assets\morris\morris.min.js" />
+    <Content Include="assets\morris\raphael.min.js" />
+    <Content Include="assets\nestable\jquery.nestable.css" />
+    <Content Include="assets\nestable\jquery.nestable.js" />
+    <Content Include="assets\nestable\nestable.js" />
+    <Content Include="assets\notifications\notification.css" />
+    <Content Include="assets\notifications\notifications.js" />
+    <Content Include="assets\notifications\notify-metro.js" />
+    <Content Include="assets\notifications\notify.min.js" />
+    <Content Include="assets\owl-carousel\owl.carousel.css" />
+    <Content Include="assets\owl-carousel\owl.carousel.js" />
+    <Content Include="assets\peity-chart\jquery.peity.init.js" />
+    <Content Include="assets\peity-chart\jquery.peity.min.js" />
+    <Content Include="assets\responsive-table\rwd-table.min.css" />
+    <Content Include="assets\responsive-table\rwd-table.min.js" />
+    <Content Include="assets\rickshaw-chart\rickshaw.chart.init.js" />
+    <Content Include="assets\rickshaw-chart\rickshaw.min.css" />
+    <Content Include="assets\rickshaw-chart\rickshaw.min.js" />
+    <Content Include="assets\rickshaw-chart\vendor\d3.layout.min.js" />
+    <Content Include="assets\rickshaw-chart\vendor\d3.min.js" />
+    <Content Include="assets\select2\img\droparrows.png" />
+    <Content Include="assets\select2\img\select2-spinner.gif" />
+    <Content Include="assets\select2\img\select2.png" />
+    <Content Include="assets\select2\img\select2x2.png" />
+    <Content Include="assets\select2\select2.css" />
+    <Content Include="assets\select2\select2.min.js" />
+    <Content Include="assets\sortable\sortable-theme-bootstrap.css" />
+    <Content Include="assets\sortable\sortable.min.js" />
+    <Content Include="assets\sparkline-chart\chart-sparkline.js" />
+    <Content Include="assets\sparkline-chart\jquery.sparkline.min.js" />
+    <Content Include="assets\spinner\spinner.min.js" />
+    <Content Include="assets\summernote\summernote.css" />
+    <Content Include="assets\summernote\summernote.min.js" />
+    <Content Include="assets\sweet-alert\sweet-alert.init.js" />
+    <Content Include="assets\sweet-alert\sweet-alert.min.css" />
+    <Content Include="assets\sweet-alert\sweet-alert.min.js" />
+    <Content Include="assets\sweet-alert\thumbs-up.jpg" />
+    <Content Include="assets\tagsinput\jquery.tagsinput.css" />
+    <Content Include="assets\tagsinput\jquery.tagsinput.min.js" />
+    <Content Include="assets\timepicker\bootstrap-datepicker.js" />
+    <Content Include="assets\timepicker\bootstrap-datepicker.min.css" />
+    <Content Include="assets\timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="assets\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="assets\toggles\toggles.css" />
+    <Content Include="assets\toggles\toggles.min.js" />
+    <Content Include="assets\UiSelect\select.min.css" />
+    <Content Include="assets\UiSelect\select.min.js" />
+    <Content Include="assets\UiTree\angular-ui-tree.min.css" />
+    <Content Include="assets\UiTree\angular-ui-tree.min.js" />
+    <Content Include="assets\UiTree\app.css" />
+    <Content Include="assets\vector-map\jquery-jvectormap-1.1.1.css" />
+    <Content Include="assets\vector-map\jquery.vmap.asia.js" />
+    <Content Include="assets\vector-map\jquery.vmap.australia.js" />
+    <Content Include="assets\vector-map\jquery.vmap.europe.js" />
+    <Content Include="assets\vector-map\jquery.vmap.js" />
+    <Content Include="assets\vector-map\jquery.vmap.sampledata.js" />
+    <Content Include="assets\vector-map\jquery.vmap.usa.js" />
+    <Content Include="assets\vector-map\jquery.vmap.world.js" />
+    <Content Include="assets\vector-map\jqvmap.css" />
+    <Content Include="assets\vector-map\vmap-init.js" />
+    <Content Include="assets\XEditable\css\xeditable.css" />
+    <Content Include="assets\XEditable\css\xeditable.min.css" />
+    <Content Include="assets\XEditable\js\xeditable.js" />
+    <Content Include="assets\XEditable\js\xeditable.min.js" />
+    <Content Include="controller\activities.js" />
+    <Content Include="controller\closedgoals.js" />
+    <Content Include="controller\company.js" />
+    <Content Include="controller\companydashboard.js" />
+    <Content Include="controller\editindicator.js" />
+    <Content Include="controller\editstatus.js" />
+    <Content Include="controller\editcategory.js" />
+    <Content Include="controller\edittenant.js" />
+    <Content Include="controller\editsurvey.js" />
+    <Content Include="controller\editgoal.js" />
+    <Content Include="controller\dashboard.js" />
+    <Content Include="controller\editteam.js" />
+    <Content Include="controller\edituser.js" />
+    <Content Include="controller\employeesession.js" />
+    <Content Include="controller\employeesessiondetail.js" />
+    <Content Include="controller\employeesessions.js" />
+    <Content Include="controller\goal.js" />
+    <Content Include="controller\goalstatus.js" />
+    <Content Include="controller\indicators.js" />
+    <Content Include="controller\inviteusers.js" />
+    <Content Include="controller\jquery.nestable.js" />
+    <Content Include="controller\managepermission.js" />
+    <Content Include="controller\nestable.js" />
+    <Content Include="controller\survey.js" />
+    <Content Include="controller\oneOnOneSession.js" />
+    <Content Include="controller\home.js" />
+    <Content Include="controller\sessiondetail.js" />
+    <Content Include="controller\sessions.js" />
+    <Content Include="controller\map.js" />
+    <Content Include="controller\goalcategories.js" />
+    <Content Include="controller\recognitions.js" />
+    <Content Include="controller\tenants.js" />
+    <Content Include="controller\team.js" />
+    <Content Include="controller\teamdashboard.js" />
+    <Content Include="controller\teamprofile.js" />
+    <Content Include="controller\teams.js" />
+    <Content Include="controller\userprofile.js" />
+    <Content Include="controller\users.js" />
+    <Content Include="css\angular-datepicker.css" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\bootstrap-reset.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\headersearchbox.css" />
+    <Content Include="css\helper.css" />
+    <Content Include="css\isteven-multi-select.css" />
+    <Content Include="css\jquery.easy-pie-chart.css" />
+    <Content Include="css\Site.css" />
+    <Content Include="css\style-responsive.css" />
+    <Content Include="css\style.css" />
+    <Content Include="customscripts\recursionHelper.js" />
+    <Content Include="directives\DisplayPriority.js" />
+    <Content Include="directives\DisplayRecognition.js" />
+    <Content Include="directives\MapElement.js" />
+    <Content Include="directives\EditGoal.js" />
+    <Content Include="directives\CreateObjective.js" />
+    <Content Include="directives\HasPermission.js" />
+    <Content Include="directives\ObjectiveBoxGrid.js" />
+    <Content Include="directives\ObjectiveBox.js" />
+    <Content Include="directives\PerformanceSurvey.js" />
+    <Content Include="directives\PerformanceSurveyDisplay.js" />
+    <Content Include="directives\PriorityBox.js" />
+    <Content Include="directives\RecognitionBox.js" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\font-awesome\less\animated.less" />
+    <Content Include="assets\font-awesome\less\bordered-pulled.less" />
+    <Content Include="assets\font-awesome\less\core.less" />
+    <Content Include="assets\font-awesome\less\fixed-width.less" />
+    <Content Include="assets\font-awesome\less\font-awesome.less" />
+    <Content Include="assets\font-awesome\less\icons.less" />
+    <Content Include="assets\font-awesome\less\larger.less" />
+    <Content Include="assets\font-awesome\less\list.less" />
+    <Content Include="assets\font-awesome\less\mixins.less" />
+    <Content Include="assets\font-awesome\less\path.less" />
+    <Content Include="assets\font-awesome\less\rotated-flipped.less" />
+    <Content Include="assets\font-awesome\less\stacked.less" />
+    <Content Include="assets\font-awesome\less\variables.less" />
+    <Content Include="assets\font-awesome\scss\font-awesome.scss" />
+    <Content Include="assets\font-awesome\scss\_animated.scss" />
+    <Content Include="assets\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="assets\font-awesome\scss\_core.scss" />
+    <Content Include="assets\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="assets\font-awesome\scss\_icons.scss" />
+    <Content Include="assets\font-awesome\scss\_larger.scss" />
+    <Content Include="assets\font-awesome\scss\_list.scss" />
+    <Content Include="assets\font-awesome\scss\_mixins.scss" />
+    <Content Include="assets\font-awesome\scss\_path.scss" />
+    <Content Include="assets\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="assets\font-awesome\scss\_stacked.scss" />
+    <Content Include="assets\font-awesome\scss\_variables.scss" />
+    <Content Include="assets\ionicon\fonts\ionicons.eot" />
+    <Content Include="assets\ionicon\fonts\ionicons.ttf" />
+    <Content Include="assets\ionicon\fonts\ionicons.woff" />
+    <Content Include="img\avatar-2.jpg" />
+    <Content Include="img\avatar-3.jpg" />
+    <Content Include="img\avatar-4.jpg" />
+    <Content Include="img\avatar-5.jpg" />
+    <Content Include="img\avatar-6.jpg" />
+    <Content Include="img\avatar-7.jpg" />
+    <Content Include="img\avatar-8.jpg" />
+    <Content Include="img\avatar-9.jpg" />
+    <Content Include="img\bg_6.jpg" />
+    <Content Include="img\favicon_1.ico" />
+    <Content Include="img\img_1.jpg" />
+    <Content Include="img\img_2.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo_dark.png" />
+    <Content Include="img\single-logo.png" />
+    <Content Include="scripts\angular-animate.min.js" />
+    <Content Include="scripts\angular-datepicker.js" />
+    <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="css\bootstrap.css.map" />
+    <Content Include="assets\calendar\bootstrap-calendar-master.zip" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\.bowerrc" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\.gitignore" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\bower.json" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\components\bootstrap3\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\composer.json" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\CONTRIBUTING.md" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\events.json.php" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\calendar.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\day.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\events.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\grid.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\month.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\theme.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\variables.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\less\week.less" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\LICENSE" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\package.json" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\README.md" />
+    <Content Include="assets\calendar\bootstrap-calendar-master\bootstrap-calendar-master\web.config" />
+    <Content Include="assets\calendar\events.json.php" />
+    <Content Include="assets\datatables\images\Sorting icons.psd" />
+    <Content Include="assets\datatables\json\scroller-demo.json" />
+    <Content Include="assets\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="assets\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="assets\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="assets\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="assets\material-design-iconic-font\material-design-iconic-font.less" />
+    <Content Include="assets\rickshaw-chart\data\data.json" />
+    <Content Include="assets\rickshaw-chart\data\data.jsonp" />
+    <Content Include="assets\rickshaw-chart\data\data2.json" />
+    <Content Include="assets\rickshaw-chart\data\status.json" />
+    <Content Include="css\bootstrap-theme.min.css.map" />
+    <Content Include="css\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="controller\localdata.js" />
+    <Content Include="controller\login.js" />
+    <Content Include="controller\menu.js" />
+    <Content Include="controller\register.js" />
+    <Content Include="customscripts\app.js" />
+    <Content Include="customscripts\filter.js" />
+    <Content Include="customscripts\router.js" />
+    <Content Include="images\25.gif" />
+    <Content Include="images\team.png" />
+    <Content Include="images\user.png" />
+    <Content Include="index.html" />
+    <Content Include="scripts\angular-messages.min.js" />
+    <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\datatables.init.js" />
+    <Content Include="scripts\isteven-multi-select.js" />
+    <Content Include="scripts\jquery-1.8.3.min.js" />
+    <Content Include="scripts\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="scripts\jquery.app.js" />
+    <Content Include="scripts\jquery.chat.js" />
+    <Content Include="scripts\jquery.counterup.min.js" />
+    <Content Include="scripts\jquery.dashboard.js" />
+    <Content Include="scripts\jquery.easy-pie-chart.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\jquery.min.js" />
+    <Content Include="scripts\jquery.nicescroll.js" />
+    <Content Include="scripts\jquery.scrollTo.min.js" />
+    <Content Include="scripts\jquery.timeago.js" />
+    <Content Include="scripts\jquery.todo.js" />
+    <Content Include="scripts\modernizr.min.js" />
+    <Content Include="scripts\npm.js" />
+    <Content Include="scripts\pace.min.js" />
+    <Content Include="scripts\skycons.min.js" />
+    <Content Include="scripts\ui-bootstrap-tpls-0.12.0.js" />
+    <Content Include="scripts\ui-bootstrap-tpls-0.13.4.js" />
+    <Content Include="scripts\waypoints.min.js" />
+    <Content Include="scripts\wow.min.js" />
+    <Content Include="services\activitiesservice.js" />
+    <Content Include="services\dashboardservice.js" />
+    <Content Include="services\dataservice.js" />
+    <Content Include="services\goalstatusservice.js" />
+    <Content Include="services\goalcategoryservice.js" />
+    <Content Include="services\goalservice.js" />
+    <Content Include="services\indicatorservice.js" />
+    <Content Include="services\recognitionservice.js" />
+    <Content Include="services\tenantservice.js" />
+    <Content Include="services\teamservice.js" />
+    <Content Include="services\surveyservice.js" />
+    <Content Include="services\userservice.js" />
+    <Content Include="css\TemplateOverride.css" />
+    <Content Include="views\activities.html" />
+    <Content Include="views\Company\company.html" />
+    <Content Include="views\Company\companydashboard.html" />
+    <Content Include="views\createobjective.html" />
+    <Content Include="views\displayrecognition.html" />
+    <Content Include="views\GoalCategory\editgoalcategory.html" />
+    <Content Include="views\GoalCategory\goalcategories.html" />
+    <Content Include="views\GoalCategory\goalcategory.html" />
+    <Content Include="views\GoalStatus\editgoalstatus.html" />
+    <Content Include="views\GoalStatus\status.html" />
+    <Content Include="views\GoalStatus\goalstatus.html" />
+    <Content Include="views\Goal\closedgoals.html" />
+    <Content Include="views\Goal\editgoal.html" />
+    <Content Include="views\MapElement.html" />
+    <Content Include="views\objectiveboxgrid.html" />
+    <Content Include="views\recognitionbox.html" />
+    <Content Include="views\Recognition\recognitions.html" />
+    <Content Include="views\Team\editteam.html" />
+    <Content Include="views\Indicator\editIndicator.html" />
+    <Content Include="views\Indicator\indicator.html" />
+    <Content Include="views\Indicator\indicators.html" />
+    <Content Include="views\Tenant\edittenant.html" />
+    <Content Include="views\Tenant\tenantprofile.html" />
+    <Content Include="views\User\edituser.html" />
+    <Content Include="views\EmployeeEvaluationSession\employeesession.html" />
+    <Content Include="views\EmployeeEvaluationSession\employeesessiondetail.html" />
+    <Content Include="views\EmployeeEvaluationSession\employeesessions.html" />
+    <Content Include="views\error.html" />
+    <Content Include="views\footer.html" />
+    <Content Include="views\dashboard.html" />
+    <Content Include="views\Survey\editsurvey.html" />
+    <Content Include="views\inviteusers.html" />
+    <Content Include="views\map.html" />
+    <Content Include="views\objectivebox.html" />
+    <Content Include="views\EmployeeEvaluationSession\performancesurveydisplay.html" />
+    <Content Include="views\recoverpassword.html" />
+    <Content Include="views\Survey\survey.html" />
+    <Content Include="views\Survey\surveys.html" />
+    <Content Include="views\OneOnOneSession\oneOnOneSession.html" />
+    <Content Include="views\Goal\goal.html" />
+    <Content Include="views\header.html" />
+    <Content Include="views\home.html" />
+    <Content Include="views\login.html" />
+    <Content Include="views\EmployeeEvaluationSession\performancesurvey.html" />
+    <Content Include="views\register.html" />
+    <Content Include="views\Goal\goals.html" />
+    <Content Include="views\OneOnOneSession\sessiondetail.html" />
+    <Content Include="views\OneOnOneSession\sessions.html" />
+    <Content Include="views\Tenant\tenants.html" />
+    <Content Include="views\Tenant\tenant.html" />
+    <Content Include="views\Team\team.html" />
+    <Content Include="views\Team\teamdashboard.html" />
+    <Content Include="views\Team\teamprofile.html" />
+    <Content Include="views\Team\teams.html" />
+    <Content Include="views\unauthorized.html" />
+    <Content Include="views\User\user.html" />
+    <Content Include="views\User\userprofile.html" />
+    <Content Include="views\User\users.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="views\Invitation\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60826</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60827/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

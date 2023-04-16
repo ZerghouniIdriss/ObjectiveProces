@@ -1,0 +1,392 @@
+﻿<head>
+
+
+    <!--Animation css-->
+    <link href="/css/animate.css" rel="stylesheet">
+
+    <!--Icon-fonts css-->
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
+
+    <!--Form Wizard-->
+    <link rel="stylesheet" type="text/css" href="/assets/form-wizard/jquery.steps.css" />
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/helper.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .wizard .content {
+            overflow: auto;
+            min-height: 480px;
+        }
+    </style>
+</head>
+<div class="wraper container-fluid">
+    <!--<div class="page-title">
+        <h3 class="title">One On One Sessoin</h3>
+    </div>-->
+    <!-- Wizard with Validation -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Employee evaluation session</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="wizard-validation-form">
+                        <div>
+
+                            <h3>Select an employee</h3>
+                            <section>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-3 control-label">Invite an Employee*</label>
+                                    <div class="col-sm-9">
+                                        <select id="employeeSelect" class="required select2">
+
+                                            <option value="">Select Employee</option>
+                                            <option value="{{item.id }}" ng-repeat="item in userList">{{ item.UName }}</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <h3>Performance evaluation</h3>
+                            <section>
+                                <PerformanceSurvey selected-answers="answers" selected-survey="survey"></PerformanceSurvey>
+                            </section>
+
+                            <h3>Review previous objective</h3>
+                            <section>
+
+                                <div class="col-lg-12">
+                                    <div class="portlet" ng-repeat="item in previousgoalList">
+
+                                        <div class="portlet-heading">
+                                            <div class="text-dark">
+                                                <div class="portlet-title form-inline">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-12 form-group text-left">
+                                                            <a href="/index.html#/editgoal/{{ item.id }}">#{{ item.id }}</a> - {{ item.title }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="portlet-widgets">
+                                                <span ng-include="getcattemp($index)"></span>
+                                                <span class="divider"></span>
+                                                <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portlet{{$index}}"><i class="ion-minus-round"></i></a>
+                                                <span class="divider"></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div id="portlet{{$index}}" class="panel-collapse collapse">
+                                            <div class="portlet-body">
+
+                                                <div class="form-horizontal">
+
+                                                    <div class="form-group" ng-repeat="kr in item.keyresults">
+                                                        <label class="col-sm-3 control-label">{{ kr.title }}</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <h3>Set up new Objectives</h3>
+                            <section>
+                                <div class="form-group clearfix">
+                                    <div class="col-lg-12">
+
+                                        <div class="form-inline">
+                                            <label class="col-lg-3">Create or find objective</label>
+                                            <div class="col-lg-5">
+
+                                                <select id="existingObjSelect" class="select2" ng-model="addformData.existingGoal">
+
+                                                    <option value="">Select Objective</option>
+                                                    <option value="{{item }}" n ng-repeat="item in searchGoalList">{{ item.title }}</option>
+
+                                                </select>
+
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button type="button" class="btn btn-success   m-b-5" ng-click="addExistingGoal()">+</button>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn btn-success   m-b-5"  data-toggle="modal" data-target="#full-width-modal">+New Objective</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row m-b-10 m-t-10"></div>
+
+                                        <div class="portlet" ng-repeat="item in nextgoalList">
+
+                                            <div class="portlet-heading">
+                                                <div class="text-dark">
+                                                    <div class="portlet-title form-inline">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-12 form-group text-left">
+                                                                <a href="/index.html#/editgoal/{{ item.id }}">#{{ item.id }}</a> - {{ item.title }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="portlet-widgets">
+                                                    <a>{{item.status.title }}</a>
+                                                    <span class="divider"></span>
+                                                    <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portlet{{$index}}"><i class="ion-minus-round"></i></a>
+                                                    <span class="divider"></span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div id="portlet{{$index}}" class="panel-collapse collapse">
+                                                <div class="portlet-body">
+
+                                                    <div class="form-horizontal">
+
+                                                        <div class="form-group" ng-repeat="kr in item.keyresults">
+                                                            <label class="col-sm-3 control-label">{{ kr.title }}</label>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <h3>Review and submit</h3>
+                            <section>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-3 control-label">Employee Note</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" ng-model="addformData.AttendeeNote" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-3 control-label">Manager Note</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" ng-model="addformData.AnimatorNote" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <div class="col-lg-12">
+
+                                        <div class="col-lg-6">
+
+                                            <div class="row m-t-15 m-b-15">
+                                                <span class="m-l-15">Previous objectives</span>
+                                                <span class="pull-right m-r-15">{{ previousCompleted }}/{{ previousTotal }} completed</span>
+                                            </div>
+
+                                            <div class="portlet" ng-repeat="item in previousgoalList">
+
+                                                <div class="portlet-heading">
+                                                    <div class="text-dark">
+                                                        <div class="portlet-title form-inline">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12 form-group text-left">
+                                                                    <a href="/index.html#/editgoal/{{ item.id }}">#{{ item.id }}</a> - {{ item.title }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="portlet-widgets">
+                                                        <a>{{item.status.title }}</a>
+                                                        <span class="divider"></span>
+                                                        <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portlet{{$index}}"><i class="ion-minus-round"></i></a>
+                                                        <span class="divider"></span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div id="portlet{{$index}}" class="panel-collapse collapse">
+                                                    <div class="portlet-body">
+
+                                                        <div class="form-horizontal">
+
+                                                            <div class="form-group" ng-repeat="kr in item.keyresults">
+                                                                <label class="col-sm-3 control-label">{{ kr.title }}</label>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-6">
+
+                                            <div class="row m-t-15 m-b-15">
+                                                <span class="m-l-15">New objectives</span>
+                                                <span class="pull-right m-r-15">{{ totalNew }} new objectives</span>
+                                            </div>
+
+
+                                            <div class="portlet" ng-repeat="item in nextgoalList">
+
+                                                <div class="portlet-heading">
+                                                    <div class="text-dark">
+                                                        <div class="portlet-title form-inline">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12 form-group text-left">
+                                                                    <a href="/index.html#/editgoal/{{ item.id }}">#{{ item.id }}</a> - {{ item.title }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="portlet-widgets">
+                                                        <a>{{item.status.title }}</a>
+                                                        <span class="divider"></span>
+                                                        <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portlet{{$index}}"><i class="ion-minus-round"></i></a>
+                                                        <span class="divider"></span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div id="portlet{{$index}}" class="panel-collapse collapse">
+                                                    <div class="portlet-body">
+
+                                                        <div class="form-horizontal">
+
+                                                            <div class="form-group" ng-repeat="kr in item.keyresults">
+                                                                <label class="col-sm-3 control-label">{{ kr.title }}</label>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <div class="col-lg-12" id="pdisplay">
+
+
+
+
+
+                                    </div>
+                                </div>
+
+                            </section>
+
+                        </div>
+                    </form>
+                  <!--  <div class="alert alert-danger" ng-show="ErrorMessage != ''">    {{ ErrorMessage }}    </div>-->
+                </div>  <!-- End panel-body -->
+            </div> <!-- End panel -->
+
+        </div> <!-- end col -->
+
+    </div> <!-- End row -->
+</div>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<!--Form Validation-->
+<script src="/assets/form-wizard/bootstrap-validator.min.js" type="text/javascript"></script>
+
+<!--Form Wizard-->
+<script src="/assets/form-wizard/jquery.steps.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/jquery.validate/jquery.validate.min.js"></script>
+
+<!--wizard initialization-->
+<script src="/assets/form-wizard/wizard-init.js" type="text/javascript"></script>
+
+
+<script>
+    var employeeSelect;
+
+    jQuery(document).ready(function () {
+
+        // Select2
+        employeeSelect = jQuery("#employeeSelect").select2({
+            width: '100%'
+        });
+
+        existingObjSelect = jQuery("#existingObjSelect").select2({
+            width: '100%'
+        });
+
+    });
+</script>
+
+<script type="text/ng-template" id="catdis">
+    <a ng-click="editstatus($index,item)">{{item.status.title }}</a>
+</script>
+<script type="text/ng-template" id="catedt">
+
+    <div class="form-inline">
+        <select class="form-control" ng-model="addformData.newstatus" ng-options="item.title for item in goalstatusList"></select>
+        <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatestus($index)"></span>
+        <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetstus()"></span>
+    </div>
+
+</script>
+
+
+
+
+
+<div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog " style="width:80%;">
+        <div class="modal-content">
+
+            <div class="modal-header" style="border-bottom:none;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">ADD NEW OBJECTIVE</h4>
+            </div>
+
+            <!--<div class="modal-body">-->
+            <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+
+                <!--<div class="panel-heading"><h3 class="panel-title">Horizontal form</h3></div>-->
+                <!--<div class="panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 class="panel-title">ADD NEW OBJECTIVE</h3>
+                </div>-->
+
+
+                <div class="panel-body">
+
+                    <CreateObjective Last-Goal-Added="lastgoal" Default-Category="1"></CreateObjective>
+
+                </div> <!-- panel-body -->
+
+            </div> <!-- panel -->
+            <!--</div>-->
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>-->
+        </div>
+    </div>
+</div><!-- /.modal -->

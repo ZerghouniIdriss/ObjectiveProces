@@ -1,0 +1,74 @@
+﻿
+<!--<div class="col-md-offset-1 col-md-7">-->
+<div class="center-block marginfix">
+    <div class="wrapper-page animated fadeInDown">
+        <div class="panel panel-color panel-inverse">
+            <div class="panel-heading">
+                <h3 class="text-center m-t-10"> Create a new Account </h3>
+            </div>
+
+
+            <div class="panel-body">
+                <form name="registerForm" class="form-horizontal m-t-10 p-20 p-b-0" ng-submit="processForm()">
+
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="required form-control" type="email" placeholder="Email" name="Email" ng-model="formData.Email" required />
+                            <span class="text-danger" ng-show="registerForm.Email.$dirty && !registerForm.Email.$valid">Email is required.</span>
+                            <span class="text-danger" ng-show="registerForm.Email.$error.email">Invalid email address.</span>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+
+                        <div class="col-xs-12">
+                            <input class="required form-control" type="text" placeholder="Username" name="UName" ng-model="formData.UName" required />
+                            <span class="text-danger" ng-show="registerForm.UName.$dirty && !registerForm.UName.$valid">Username is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+
+                        <div class="col-xs-12">
+                            <input class="required form-control" type="text" placeholder="Company Name" name="CName" ng-model="formData.CName" required />
+                            <span class="text-danger" ng-show="registerForm.CName.$dirty && !registerForm.CName.$valid">Company Name is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-xs-12">
+                            <input class="required form-control" placeholder="Password" name="Password" type="password" ng-model="formData.Password" required />
+                            <span class="text-danger" ng-show="registerForm.Password.$dirty && !registerForm.Password.$valid">Valid password is required.</span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-12">
+                            <input class="required form-control" placeholder="Confirm Password" name="cpassword" type="password" ng-model="formData.ConfirmPassword" required />
+                            <span class="text-danger" ng-show="registerForm.cpassword.$dirty && !registerForm.cpassword.$valid">Confirm password is required.</span>
+                            <div ng-messages="registerForm.cpassword.$error" ng-show="registerForm.cpassword.$dirty" style="color:red">
+                                <span ng-message="required">Retype Password</span>
+                            </div>
+                            <div ng-show="formData.ConfirmPassword != formData.Password" style="color:red">Password Donot Match</div>
+
+                        </div>
+                    </div> 
+                    <div class="form-group text-right">
+                        <div class="col-md-6 text-left">
+                             <a href="#login" class="btn btn-default w-md">  Sign in </a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success w-md" type="submit">Register</button>
+                        </div>
+                    </div> 
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    

@@ -1,0 +1,64 @@
+﻿
+<div class="portlet">
+    <div class="" style="padding-bottom:0px;">
+        <div class="form-group">
+            <div class="col-md-10">
+                <div class="">
+                    <a class="text-right" href="/index.html#/editgoal/{{ objective.id }}">
+                        #{{ objective.id }}
+                        - <strong>{{ objective.title.length > 70?objective.title.substring(0,70)+"..":objective.title}}</strong> 
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3 text-right">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false"><span class="fa fa-ellipsis-v"></span></a>
+                        <ul role="menu" class="dropdown-menu pull-right">
+                            <li><a href="/index.html#/editgoal/{{ objective.id }}">More Details</a></li>
+                            <li><a class="text-{{ objective.isopen ? 'danger' : 'default' }} " ng-click="editisopen()"> {{ objective.isopen ? 'Close' : 'Open' }}</a></li>
+                            <li><a class="text-danger" ng-click="deletegoal()">Delete</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="panel-body" style="height: 85px">
+        <div class="row">
+            <div class="col-md-7">
+                <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in objective.users" />
+                <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in objective.teams" />
+            </div>
+
+            <div class="col-md-5">
+                <div class="col-md-6 text-right">
+                    <a><i ng-if="!objective.isprivate" data-toggle="tooltip" title="Public" tool class="fa fa-unlock fa-lg"></i></a>
+                    <a><i ng-if="objective.isprivate" data-toggle="tooltip" title="Private" class="fa fa-lock fa-lg"></i></a>
+                </div>
+
+                <div class="col-md-6">
+                    <a><i ng-if="objective.isaligned" data-toggle="tooltip" title="Alignment" class="fa fa-chain fa-lg"></i></a>
+                    <a><i ng-if="!objective.isaligned" data-toggle="tooltip" title="Alignment" class="fa fa-chain-broken fa-lg"></i></a>
+                </div>
+
+                <div class="col-md-12 middle-align">
+                    <div class="form-inline">
+                        <!--<i ng-if="(objective.duedate  | date:'d M') > (currentDate | date:'d M')" data-toggle="tooltip" title="Due Date" class="fa fa-clock-o fa-lg col-md-3 col-sm-3 col-xs-3"></i>-->
+                        <p class=" badge bg-{{(objective.duedate  | date:'d M') > (currentDate | date:'d M')?'danger':default}}">
+                            <i data-toggle="tooltip" title="Due Date" class="fa fa-clock-o fa-lg col-md-3 col-sm-3 col-xs-3"></i>
+                            {{ objective.duedate == null ? 'Not Set' : objective.duedate | date : 'dd MMM' }}
+                        </p>
+                        <!--<p ng-if="(objective.duedate | date:'d M') < (currentDate | date:'d M')" class="col-md-9 col-sm-9 col-xs-8 text-left">{{ objective.duedate == null ? 'Not Set' : objective.duedate | date : 'dd MMM' }}</p>
+                        <p ng-if="(objective.duedate == null)" class="col-md-9 col-sm-9 col-xs-8 text-left">{{ 'Not Set'}}</p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

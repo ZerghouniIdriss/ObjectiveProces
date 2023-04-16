@@ -1,0 +1,410 @@
+﻿<style>
+    .customPopover {
+        width: 700px !important;
+        //height: 250px !important;
+    }
+</style>
+
+<!--Page Title-->
+ 
+<!-- Search form Row- -->
+<div class="row">
+    <div class="col-md-6">
+        <span style="font-size:24px;font-weight:bold">Objectives</span>
+    </div>
+    <div style="padding-right:0px;" class="col-md-6 ">
+        <form class="form-horizontal" name="searchForm">
+            <!-- Search input -->
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <input class="form-control" name="title" placeholder="Search id, title, status, duedate, category, users, description" type="text" id="title" ng-model="searchformData.title">
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-success m-b-5" id="btnfilter" data-toggle="modal" data-target="#filter-modal"><i class="fa fa-filter"></i> </button>
+
+                    <!--<button class="btn btn-success m-b-5" id="btnfilter" data-container="body" popover-class="customPopover" popover-animation="true"
+                            popover-template="'filter.html'" popover-placement="left-bottom" popover-trigger="click"><i class="fa fa-filter"></i> </button-->
+                    <button class="btn btn-success  m-b-5" id="btnaddnew" ng-click="newgoal()" data-toggle="modal" data-target="#full-width-modal"><i class="ion-android-add"></i></button>
+                    <button class="btn btn-default m-b-5 btngrid" id="listBtn" ng-click="changeView('list')"><i class="zmdi zmdi-view-list"></i></button>
+                    <button class="btn btn-default m-b-5 btngrid" id="defaultBtn" ng-click="changeView('default')"><i class="zmdi zmdi-view-agenda"></i></button>
+                    <!--<button class="btn btn-default m-b-5 btngrid" id="gridBtn" ng-click="changeView('grid')"><i class="zmdi zmdi-grid"></i></button>-->
+               
+                </div>
+                <!--<div class="col-xs-6">
+
+                </div>-->
+            </div>
+        </form><!-- / Form fields -->
+    </div>
+</div><!-- Search form Row- -->
+
+<div ng-include="getViewTemp()"> </div>
+<script type="text/ng-template" id="ListView">
+
+    <div class="row">
+        <div class="panel panel-default">
+            <table class="table customTable table-hover">
+                <tr class="table-header">
+                    <th> 
+                        #Id 
+                    </th>
+                    <th>People</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Category</th>
+                    <th>
+                        <a ng-click="sortType = 'priority'; sortReverse = !sortReverse">
+                        Priority
+                        <span ng-show="sortType == 'priority' && !sortReverse" class="fa fa-caret-up"></span>
+                        <span ng-show="sortType == 'priority' && sortReverse" class="fa fa-caret-down"></span>
+                        </a>
+
+                    </th>
+                  
+                    <th>Actions</th>
+                </tr>
+
+                <tr ng-repeat="item in filteredresult = (goalList | filter : {  $ : searchformData.userteam , title : searchformData.title, category : { id : searchformData.category.id }, status : { id : searchformData.status.id  } } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse)">
+                    <td>
+                        <a href="/index.html#/editgoal/{{ item.id }}">#{{ item.id }}</a>
+                        <!--ng-click="editGoal()" data-toggle="modal" data-target="#edit-Goal-modal" -->
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td ng-repeat="user in item.users"><img class="img-circle profile-img thumb-xs" src="{{ user.Avatar }}" alt=""></td>
+                                <td ng-repeat="team in item.teams"><img class="img-circle profile-img thumb-xs" src="{{ team.Avatar}}" alt=""> </td>
+
+                            </tr>
+                            <!--<tr >
+                            </tr>-->
+                        </table>
+                    </td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.status.title }}</td>
+                    <td>{{item.category.title}}</td>
+                    <td><displaypriority value="item.priority"></displaypriority></td>
+                    <td class="text-center">
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="text-{{ item.isopen ? 'danger' : 'default' }}" style="cursor:pointer;" ng-click="editisopen(item)">{{ item.isopen ? 'Close' : 'Open' }}</span>
+                                </td>
+                                <td>
+                                    <span class="ion-trash-a" style="cursor:pointer;" ng-click="deletegoal(item)"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-xs-8">
+            <div class="pagination-div">
+
+                <ul class="pagination">
+                    <li ng-class="DisablePrevPage()">
+                        <a href ng-click="prevPage()"> Prev</a>
+                    </li>
+
+                    <li ng-repeat="n in range()"
+                        ng-class="{active: n == currentPage}"
+                        ng-click="setPage(n)">
+                        <a>{{n+1}}</a>
+                    </li>
+
+                    <li ng-class="DisableNextPage()">
+                        <a href ng-click="nextPage()">Next </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-xs-4 text-right table-total-text">
+            <div>Total Records : {{ goalList.length }} </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="DefaultView">
+    <div style="margin-top:30px;" class="row">
+
+        <div class="portlet" ng-repeat="item in filteredresult = (goalList | filter : searchByIdTitle | filter : {  $ : searchformData.userteam,  category : { id : searchformData.category.id }, status : { id : searchformData.status.id  }, isaligned : searchformData.alignedonly, isprivate : searchformData.privateonly } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse)">
+
+            <objectivebox box-objective="item" data-index="$index" data-deleted="objectiveDeleted"></objectivebox>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-8">
+            <div class="pagination-div">
+
+                <ul class="pagination">
+                    <li ng-class="DisablePrevPage()">
+                        <a href ng-click="prevPage()"> Prev</a>
+                    </li>
+
+                    <li ng-repeat="n in range()"
+                        ng-class="{active: n == currentPage}"
+                        ng-click="setPage(n)">
+                        <a>{{n+1}}</a>
+                    </li>
+
+                    <li ng-class="DisableNextPage()">
+                        <a href ng-click="nextPage()">Next </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-xs-4 text-right table-total-text">
+            <div>Total Records : {{ goalList.length }} </div>
+        </div>
+
+
+        
+
+    </div>
+</script>
+<!--<script type="text/ng-template" id="GridView">
+    <div style="margin-top:30px;" class="row">
+        <div class="row">
+            <ul id="accordianObj">
+                <li>
+                    <div>
+                        <i class="icon-fwd fa fa-play"></i>
+                        <i class="icon-bck fa fa-step-backward"></i>
+                        <span data-toggle="tooltip" title="on track" class="badge bg-success" ng-bind="OnTrackObjectives.length"> </span>
+                        <span style="margin-left:15px">On track</span> 
+                        <div class="panel-body cpanel scrollerPanel">
+                            <div ng-repeat="obj in filteredresult = (OnTrackObjectives | filter : searchByIdTitle | filter : {  $ : searchformData.userteam,  category : { id : searchformData.category.id }, status : { id : searchformData.status.id  }, isaligned : searchformData.alignedonly, isprivate : searchformData.privateonly } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse)  " class="gridbox">
+                                <objectiveboxgrid box-objective="obj" data-index="$index" data-deleted="objectiveDeleted"></objectiveboxgrid>
+                            </div>
+                            <div ng-if="OnTrackObjectives.length ==0"> NO objective in this list!</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="icon-fwd fa fa-play"></i>
+                        <i class="icon-bck fa fa-step-backward"></i>
+                        <span data-toggle="tooltip" title="At Risk" class="badge bg-warning" ng-bind="AtRiskObjectives.length"></span> 
+                        <span style="margin-left:15px">
+                        At Risk</span>
+                        <div class="panel-body cpanel scrollerPanel">
+                            <div ng-repeat="obj in filteredresult = (AtRiskObjectives | filter : searchByIdTitle | filter : {  $ : searchformData.userteam,  category : { id : searchformData.category.id }, status : { id : searchformData.status.id  }, isaligned : searchformData.alignedonly, isprivate : searchformData.privateonly } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse)  " class="gridbox">
+                                <objectiveboxgrid box-objective="obj" data-index="$index" data-deleted="objectiveDeleted"></objectiveboxgrid>
+                            </div>
+                            <div ng-if="AtRiskObjectives.length ==0"> NO objective in this list!</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="icon-fwd fa fa-play"></i>
+                        <i class="icon-bck fa fa-step-backward"></i>
+                        <span data-toggle="tooltip" title="Delayed Objectives" class="badge bg-danger" ng-bind="DelayedObjectives.length"></span> 
+                        <span style="margin-left:15px">
+                        Delayed Objectives</span>
+                        <div class="panel-body cpanel scrollerPanel">
+                            <div ng-repeat="obj in filteredresult = (DelayedObjectives | filter : searchByIdTitle | filter : {  $ : searchformData.userteam,  category : { id : searchformData.category.id }, status : { id : searchformData.status.id  }, isaligned : searchformData.alignedonly, isprivate : searchformData.privateonly } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse) " class="gridbox">
+                                <objectiveboxgrid box-objective="obj" data-index="$index" data-deleted="objectiveDeleted"></objectiveboxgrid>
+                            </div>
+                            <div ng-if="DelayedObjectives.length ==0"> NO objective in this list!</div>
+                        </div>
+                    </div>
+                </li>
+               
+            </ul>
+            <div class="container">
+                <div class="row collapsablePannel ">
+                    <div class="panel-group">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" ng-click="CollapsePlane(1)">
+                                        On Track <span class="badge bg-success" ng-bind="OnTrackObjectives.length"> </span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" uib-collapse="isCollapsedTrack">
+                                <div class="panel-body cpanel scrollerPanel">
+                                    <div ng-repeat="obj in OnTrackObjectives" class="gridbox">
+                                        <objectiveboxgrid box-objective="obj" data-index="$index" data-deleted="objectiveDeleted"></objectiveboxgrid>
+                                    </div>
+                                    <div ng-if="OnTrackObjectives.length ==0"> NO objective in this list!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-warnning">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" ng-click="CollapsePlane(2)">
+                                        At Risk <span class="badge bg-warnning" ng-bind="GetRiskObjectives.length"></span>
+                                    </a>
+                                </h4>
+
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" uib-collapse="isCollapsedRisk">
+                                <div class="panel-body cpanel">
+                                    <div ng-repeat="obj in GetRiskObjectives" class="gridbox">
+                                        <objectiveboxgrid box-objective="obj" data-index="$index" data-deleted="objectiveDeleted"></objectiveboxgrid>
+                                    </div>
+                                    <div ng-if="GetRiskObjectives.length ==0"> NO objective in this list!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" ng-click="CollapsePlane(3)">
+                                        Delayed <span class="badge bg-danger" ng-bind="GetDelayedObjectives.length"></span>
+                                    </a>
+                                </h4>
+
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" uib-collapse="isCollapsedDelayed">
+                                <div class="panel-body cpanel">
+                                    <div ng-repeat="obj in GetDelayedObjectives" class="gridbox">
+                                        <objectiveboxgrid box-objective="obj" data-index="$index" data-deleted="objectiveDeleted"></objectiveboxgrid>
+                                    </div>
+                                    <div ng-if="GetDelayedObjectives.length ==0"> NO objective in this list!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</script>-->
+
+
+<div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog " style="width:80%;">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:none;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="refreshgoals()">×</button>
+                <h4 class="modal-title">ADD NEW OBJECTIVE</h4>
+            </div>
+
+            <!--<div class="modal-body">-->
+            <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+                <div class="panel-body">
+                    <createobjective Last-Goal-Added="lastgoal" Default-Category="defcat" On-Success-Add="processsearchform"></createobjective>
+                </div> <!-- panel-body -->
+            </div> <!-- panel -->
+        </div>
+    </div>
+</div>
+<!--<div id="edit-Goal-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog " style="width:95%;">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:none;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="refreshgoals()">×</button>
+                <h4 class="modal-title">Objective</h4>
+            </div>
+
+            <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+                <div class="panel-body">
+                    <editobjective Goal-Id="editGoalId"></editobjective>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+ 
+<div id="filter-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog " style="width:80%;">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:none;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="refreshgoals()">×</button>
+                <h4 class="modal-title">Filter Objectives:</h4>
+            </div>
+            <!--<div class="modal-body">-->
+            <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+                <div class="panel-body" style="padding:0px">
+                    <!--<script type="text/ng-template" id="filter.html">-->
+                    <form class="animated fadeIn popoverFade" role="form">
+                        <div class="col-md-12 form-horizontal">
+                            <div class="col-md-4 paddingRight40">
+                                <div class="form-group">
+                                    <label class="filter-col" style="margin-right:0;" for="pref-search">User/Team :</label>
+                                    <input type="text" class="form-control input-sm" id="pref-search" ng-model="searchformData.userteam">
+                                </div>
+                                <div class="form-group">
+                                    <label class="filter-col" style="margin-right:0;" for="pref-orderby">Status :</label>
+                                    <select id="pref-orderby" class="form-control" ng-model="searchformData.status" ng-options="item.title for item in goalstatusList"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 paddingRight40">
+                                <div class="form-group">
+                                    <label class="filter-col" style="margin-right:0;" for="pref-orderby">Category :</label>
+                                    <select class="form-control" ng-model="searchformData.category" ng-options="item.title for item in goalcatList"></select>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-4 paddingRight40">
+                                <div class="form-group">
+                                    <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                        <label><input type="checkbox" ng-model="searchformData.alignedonlycheckbox" ng-change="alignedClicked()">Aligned Only </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                        <label><input type="checkbox" ng-model="searchformData.closedObjectivecheckbox" ng-change="closedObjectiveClicked()"> Closed Objective </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                        <label><input type="checkbox" ng-model="searchformData.privateonlycheckbox" ng-change="privateClicked()"> Private Only </label>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                           
+                        </div>
+                    </form>
+
+                    <!--</script>-->
+                </div>
+                <div class="form-group" style="float: right;padding: 10px">
+                    <button class="btn btn-success filter-col" ng-click="clearall()">
+                        Clear All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div ng-repeat="item in filteredresult = (goalList | filter : searchByIdTitle | filter : {  $ : searchformData.userteam,  category : { id : searchformData.category.id }, status : { id : searchformData.status.id  }, isaligned : searchformData.alignedonly, isprivate : searchformData.privateonly } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse)">
+    <div id="edit-Goal-modal{{item.id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog " style="width:95%;">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom:none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="refreshgoals()">×</button>
+                    <h4 class="modal-title">Objective</h4>
+                </div>
+
+                <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+                    <div class="panel-body">
+                        <editobjective Goal-Id="item.id"></editobjective>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+

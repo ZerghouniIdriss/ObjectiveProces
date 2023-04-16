@@ -1,0 +1,61 @@
+﻿<div class="col-lg-8"> 
+    <div class="portlet">
+        <!-- /primary heading -->
+        <div class="portlet-heading">
+            <h3 class="portlet-title text-dark text-uppercase">
+                Edit Team
+            </h3>
+            <div class="portlet-widgets">
+                <!--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>-->
+                <span class="divider"></span>
+                <a data-toggle="collapse" data-parent="#accordion1" href="/team#portlet1"><i class="ion-minus-round"></i></a>
+                <span class="divider"></span>
+                <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="portlet1" class="panel-collapse collapse in">
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form class="form-horizontal" name="addbasic" ng-submit="updateTeam()" role="form">
+                                    <div class="form-group">
+                                        <label for="tName" class="col-sm-3 control-label">Team Name *</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="tName" name="tName" placeholder="Enter team name" ng-model="editformData.Name" maxlength="100" required>
+                                            <span class="text-danger" ng-show="addbasic.tName.$error.required">Team Name is required.</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tDescription" class="col-sm-3 control-label">Description</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="tDescription" name="tDescription" placeholder="Enter team description" ng-model="editformData.Description" maxlength="200">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Assign to *</label>
+                                        <div class="col-sm-9">
+                                            <div isteven-multi-select input-model="assigneeList" output-model="editformData.assignees" button-label="icon name" item-label="icon name maker" tick-property="ticked" group-property="msGroup" output-properties="id isteam">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-9 col-sm-3 text-right">
+                                            <button class="btn btn-default" type="button" ng-click="backtoteams()">Close</button>
+                                            <button class="btn btn-success" type="submit">Save</button>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-danger" ng-show="ErrorMessage != ''"> {{ ErrorMessage }} </div>
+                                </form>
+                            </div>
+                            <!-- panel-body -->
+                        </div>
+                        <!-- panel -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

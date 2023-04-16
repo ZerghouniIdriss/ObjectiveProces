@@ -1,0 +1,402 @@
+﻿<div class=" container-fluid profile-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="media-main">
+                                <a class="pull-left">
+                                    <img class="thumb-lg img-circle bx-s" src="{{editformData.Avatar}}" alt="" style="cursor: pointer;" data-toggle="modal" data-target="#full-width-upload">
+                                </a>
+                                <div class="info">
+                                    <h4>{{editformData.UserName}}</h4>
+                                    <p class="text-muted">{{editformData.Email}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        </div>  
+                      
+                        <div class="col-sm-2"  style="margin-top: -1%;">
+                            <div class="chart" id="overallChart" data-percent="{{ overallProgress }}">
+                                <span class="percent">{{ overallProgress }}</span>
+                                <h5 style="margin-top: -1%;">Progress</h5>
+                                <canvas height="110" width="110"></canvas>
+                            
+                            </div>
+                        </div>  
+                        <div class="col-sm-2" style="margin-top: -1%;">
+                            <div class="chart" id="alignedChart" data-percent="{{ aligned }}">
+                                <span class="percent">{{  aligned }}</span>  
+                                <h5 style="margin-top: -1%;" >Aligned</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- panel-body -->
+            </div> <!-- panel -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+        <ul class="nav nav-tabs profile-tabs">
+            <li class="" ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)" data-toggle="tab" aria-expanded="false">
+                    <span class="visible-xs"><i class="fa fa-home"></i></span>
+                    <span class="hidden-xs">Objectives and Key Results</span>
+                </a>
+            </li>
+           
+            <li has-permission="/recognition" class="" ng-class="{ active: isSet(3) }">
+                <a href ng-click="setTab(4)" data-toggle="tab" aria-expanded="false">
+                    <span class="visible-xs"><i class="fa fa-user"></i></span>
+                    <span class="hidden-xs">Private Objectives</span>
+                </a>
+            </li>
+            <li has-permission="/recognition" class="" ng-class="{ active: isSet(3) }">
+                <a href ng-click="setTab(3)" data-toggle="tab" aria-expanded="false">
+                    <span class="visible-xs"><i class="fa fa-user"></i></span>
+                    <span class="hidden-xs">Recognition</span>
+                </a>
+            </li>
+            <li class="" ng-class="{ active: isSet(2) }">
+                <a href ng-click="setTab(2)" data-toggle="tab" aria-expanded="false">
+                    <span class="visible-xs"><i class="fa fa-user"></i></span>
+                    <span class="hidden-xs">About Me</span>
+                </a>
+            </li>
+
+        </ul>
+         
+        <div class="tab-content">
+        <!--OKR-->
+        <div class="tab-pane" ng-class="{ active: isSet(1) }" ng-show="isSet(1)">
+            <div class="row">
+                <div class="portlet" ng-repeat="item in editformData.Objective">
+                    <objectivebox box-objective="item" data-index="$index" data-deleted="objectiveDeleted"></objectivebox>
+                </div>
+            </div>
+        </div>
+            
+        <!--Private OKR-->
+        <div class="tab-pane" ng-class="{ active: isSet(4) }" ng-show="isSet(4)">
+            <div class="row">
+                <div class="portlet" ng-repeat="item in editformData.PrivateGoals">
+                    <objectivebox box-objective="item" data-index="$index" data-deleted="objectiveDeleted"></objectivebox>
+                </div>
+            </div>
+        </div>
+        <!--Recognition Tab-->
+        <div class="tab-pane" ng-class="{ active: isSet(3) }" ng-show="isSet(3)">
+            <div class="row userdtails">
+                <div class="panel-body">
+                    <h4 class="panel-title">Recognition</h4>
+
+                </div>
+                <div class="row row col-lg-12">
+
+                    <div class="portlet" ng-repeat="recognition in editformData.Recognitions">
+                        <div class="panel-default">
+                            <div class="panel-body">
+                                <div class="horizontal">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1">
+                                            <img class="m-r-5 thumb-sm br-radius pointer" src="{{recognition.giver.Avatar}}" alt="member" data-ng-click="chartType = 0" popover-animation="true" popover-template="'UnassignUser.html'" popover-placement="bottom" popover-trigger="click">
+                                        </div>
+                                        <div class="col-md-11">
+                                            {{recognition.giver.UserName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="horizontal">
+                                    <div class="col-lg-12">
+                                        {{recognition.text}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--About me Tab-->
+        <div class="tab-pane" ng-class="{ active: isSet(2) }" ng-show="isSet(2)">
+            <div class="row userdtails">
+                <div class="panel-body">
+                    <h4 class="panel-title">Basic Info:</h4>
+                </div>
+                <div class="panel-body form-horizontal">
+                    <div class="formTwocol">
+                        <div class="col-md-11 form-group">
+                            <div class="col-md-2 control-label"><b>Firstname</b>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-inline" ng-include="getFNeditTemp()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-11 form-group">
+                            <div class="col-md-2 control-label"><b>Lastname</b>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-inline" ng-include="getLNeditTemp()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-11 form-group">
+                            <div class="col-md-2 control-label"><b>Email</b>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-inline" ng-include="getELeditTemp()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formTwocol">
+                        <div class="col-md-12 form-group">
+                            <div class="col-md-2 control-label"><b>User Teams</b>
+                            </div>
+                            <div class="col-md-8">
+                                <div isteven-multi-select style="width: 100%" input-model="assigneeList" output-model="assignees"
+                                     button-label="icon name" item-label="icon name maker" tick-property="ticked" group-property="msGroup"
+                                     output-properties="id isteam">
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-left">
+                                <button class="btn btn-success m-b-5" ng-click="addteam()">+</button>
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="item in editformData.Teams">
+                            <div class="col-md-12 form-group">
+                                <div class="col-md-2 control-label"></div>
+                                <div class="col-md-9 form-inline form-group">
+                                    <img class="m-r-10 thumb-sm br-radius" src="{{item.Avatar}}" alt="member">
+                                    {{item.name}}
+                                    <i class="ion-trash-a pull-right form-control" ng-click="deleteTeam($index)"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="col-md-2 control-label"><b>Roles</b>
+                            </div>
+                            <div class="col-md-8">
+                                <select id="roleSelect" class="required select2">
+                                    <option value="">Select Role</option>
+                                    <option value="{{item.Id }}" ng-repeat="item in roleList">{{ item.Name }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 text-left">
+                                <button class="btn btn-success   m-b-5" ng-click="addRole()">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group" ng-repeat="item in editformData.Roles">
+                            <div class="col-md-2 control-label"></div>
+                            <div class="col-md-9 form-inline form-group ng-scope">
+                                <div class="col-md-4">
+                                    {{item.Name}}
+                                </div>
+                                <i class="ion-trash-a pull-right form-control" style="cursor: pointer" ng-click="deleteRole($index)"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="col-md-2 control-label"><b>User Manager</b>
+                            </div>
+                            <div class="col-md-8">
+                                <select id="userManagerSelect" class="required select2" ng-model="Manager">
+                                    <option value="">Select Manager</option>
+                                    <option value="{{item}}" ng-repeat="item in userList">{{ item.UserName }}</option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-2 text-left">
+                                <span class="btn btn-success m-b-5" style="cursor: pointer;" ng-click="updateUserManager()">
+                                    <i class="ion-checkmark-round"></i>
+                                </span>
+                                <!--<span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetUserManager()"></span>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <div class="col-md-2 control-label"></div>
+                                <div class="col-md-9 form-inline form-group">
+                                    <div class="col-md-4" ng-bind="editformData.ManagerUserName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--<div class="panel-default">
+                    <div class="panel-body">
+                        <h4 class="panel-title">User Teams</h4>
+                    </div>-->
+                    <!--<div class="panel-body">
+                        <div class="row" ng-repeat="item in editformData.Teams">
+                            <div class="col-md-6">
+                                <img class="m-r-10 thumb-sm br-radius" src="{{item.Avatar}}" alt="member">
+                                {{item.name}}
+                                <i class="ion-trash-a pull-right" ng-click="deleteTeam($index)"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <div isteven-multi-select style="width:100%" input-model="assigneeList" output-model="assignees"
+                                     button-label="icon name" item-label="icon name maker" tick-property="ticked" group-property="msGroup"
+                                     output-properties="id isteam">
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <button class="btn btn-success   m-b-5" ng-click="addteam()">+</button>
+                            </div>
+                            ]</div>
+                    </div>-->
+                    <!--Panel-body -->
+                </div> <!-- Panel-->
+
+            </div>
+            <!--<div class="row">
+
+                <div class="panel-default">
+                    <div class="panel-body">
+                        <h4 class="panel-title">Roles</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 form-inline form-group ng-scope" ng-repeat="item in editformData.Roles">
+                                <div class="col-md-4">
+                                    {{item.Name}}
+                                </div>
+                                <i class="ion-trash-a pull-right form-control" style="cursor:pointer" ng-click="deleteRole($index)"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select id="roleSelect" class="required select2">
+                                    <option value="">Select Role</option>
+                                    <option value="{{item.Id }}" ng-repeat="item in roleList">{{ item.Name }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <button class="btn btn-success   m-b-5" ng-click="addRole()">+</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>-->
+        </div>
+        </div>
+            <div class="tab-pane" ng-class="{ active: isSet(3) }" ng-show="isSet(3)">
+
+            </div>
+
+            <div class="tab-pane" ng-class="{ active: isSet(4) }" ng-show="isSet(4)">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/ng-template" id="FNedit">
+    <input ng-model="editformData.NewFirstName" class="form-control" />
+    <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updateFirstName()"></span>
+    <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetFirstName()"></span>
+</script>
+<script type="text/ng-template" id="FNdisplay">
+    <label class="form-control BorderZero" ng-bind="editformData.FirstName"></label>
+    <i class="ion-edit pull-right form-control" style="cursor:pointer;" ng-click="setFNeditTemp()"></i>
+</script>
+<script type="text/ng-template" id="LNedit">
+    <input ng-model="editformData.NewLastName" class="form-control" />
+    <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updateLastName()"></span>
+    <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetLastName()"></span>
+</script>
+<script type="text/ng-template" id="LNdisplay">
+    <label class="form-control BorderZero" ng-bind="editformData.LastName"></label>
+    <i class=" ion-edit pull-right form-control" style="cursor:pointer;" ng-click="setLNeditTemp()"></i>
+</script>
+<script type="text/ng-template" id="ELedit">
+    <input ng-model="editformData.NewEmail" class="form-control" />
+    <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updateEmail()"></span>
+    <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetEmail()"></span>
+</script>
+<script type="text/ng-template" id="ELdisplay">
+    <label class="form-control BorderZero" ng-bind="editformData.Email"></label>
+    <i class=" ion-edit pull-right form-control" style="cursor:pointer;" ng-click="setELeditTemp()"></i>
+</script>
+<script type="text/ng-template" id="UMedit">
+
+</script>
+<script type="text/ng-template" id="UMdisplay">
+    <input type="text" class="form-control BorderZero" ng-model="editformData.ManagerUserName" disabled />
+    <i class="ion-edit pull-right form-control" style="cursor:pointer;" ng-click="setUMeditTemp()"></i>
+</script>
+
+<div id="full-width-upload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+        <div class="modal-content">
+
+            <div class="modal-header" style="border-bottom:none;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title">Preview and upload image</h4>
+            </div>
+
+            <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="btn btn btn-success fileinput-button btn-file">
+                                Browse <input class="form-control input-lg" type="file" id="fileUploader" onchange="angular.element(this).scope().previewImage(this.files)">
+                            </span>
+                            <!--<input type="file" id="fileUploader" class="m-b-15" onchange="angular.element(this).scope().previewImage(this.files)" />-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="{{editformData.Avatar}}" alt="" id="previewImageTag" class="img-responsive" />
+                        </div>
+                    </div>
+
+                </div> <!-- panel-body -->
+
+            </div> <!-- panel -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary start" ng-click="uploadImage()"><i class="glyphicon glyphicon-upload"></i>Start upload</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->
+
+
+<script>
+    var roleSelect;
+    var userManager;
+    jQuery(document).ready(function () {
+
+        // Select2
+        roleSelect = jQuery("#roleSelect").select2({
+            width: '100%'
+        });
+        userManager = jQuery("#userManagerSelect").select2({
+            width: '100%'
+        });
+
+    });
+
+</script>
+<script src="/assets/peity-chart/jquery.peity.min.js"></script>
+<script src="/assets/peity-chart/jquery.peity.init.js"></script>

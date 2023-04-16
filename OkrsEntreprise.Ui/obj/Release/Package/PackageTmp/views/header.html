@@ -1,0 +1,115 @@
+﻿<!-- Header -->
+<header  ng-controller="menu" class="top-head container-fluid">
+    <button type="button" class="navbar-toggle pull-left">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <!-- Search -->
+    <form role="search" class="navbar-left app-search pull-left hidden-xs" action="">
+        <input  id="search"  type="text" placeholder="Search..." class="form-control"  ng-model="searchquery.text" ng-keydown="$event.which === 13 && searchObjective()">
+    </form>
+    
+        
+     
+    <nav class="navbar-default" role="navigation">
+        <ul class="nav navbar-nav hidden-xs headermenu">
+            <!-- <li ng-if="isUserLoggedIn()"><a href="#dashboard">Dashboard</a></li> -->
+            <!--<li ng-if="isUserLoggedIn()" class="dropdown" Has-Permission="/topdashboard">
+                <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false">Dashboards<span class="caret"></span></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li Has-Permission="/dashboard"><a href="#dashboard">Personal</a></li>
+                    <li Has-Permission="/teamdashboard"><a href="#teamdashboard">Teams</a></li>
+                    <li Has-Permission="/companydashboard"><a href="#companydashboard">Company</a></li>
+                </ul>
+            </li>-->
+
+            <li ng-if="isUserLoggedIn()" Has-Permission="/dashboard"><a href="#dashboard">Dashboard</a></li>
+            <li ng-if="isUserLoggedIn()" Has-Permission="/objectives"><a href="#objectives">Objectives</a></li>
+            <li ng-if="isUserLoggedIn()" Has-Permission="/map"><a href="#map">Map</a></li>
+            <li ng-if="isUserLoggedIn()" Has-Permission="/recognition"><a href="#recognition">Recognition</a></li>
+            <!--<li ng-if="isUserLoggedIn()" class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false">Tools <span class="caret"></span></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="#sessions">1-On-1 Session</a></li>
+                    <li><a href="#sessions">Performance Evaluation Session</a></li>
+                </ul>
+            </li>-->
+
+
+
+            <!--<li ng-if="isUserLoggedIn()" Has-Permission="/topsearch">
+                <form role="search" class="navbar-left app-search pull-left hidden-xs">
+                    <input type="text" placeholder="Search..." class="form-control" name="searchquery" ng-model="searchquery.text">
+                    <a ng-click="searchObjective()"><i class="fa fa-search"></i></a>
+                </form>
+            </li>-->
+
+        </ul>
+        <!-- Right navbar -->
+        <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
+            <li class="search-form"  ng-if="isUserLoggedIn()" Has-Permission="/topsearch">
+
+                <!--<form role="search"  action="" >
+                    <div class="form-group has-feedback">
+                        <label for="search" class="sr-only">Search</label>
+                        <input type="text" class="form-control" name="search" id="search" placeholder="search" ng-model="searchquery.text" ng-keydown="$event.which === 13 && searchObjective()">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                </form>-->
+
+            </li>
+            <!-- Notification -->
+            <li class="dropdown" ng-if="isUserLoggedIn()"  Has-Permission="/topnotification">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    <i class="zmdi zmdi-notifications-none"></i>
+                    <span class="badge badge-sm up bg-pink count">3</span>
+                </a>
+                <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5002">
+                    <li class="noti-header">
+                        <p>Notifications</p>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="pull-left"><i class="fa fa-user-plus fa-2x text-info"></i></span>
+                            <span>New user registered<br><small class="text-muted">5 minutes ago</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="pull-left"><i class="fa fa-diamond fa-2x text-primary"></i></span>
+                            <span>Use animate.css<br><small class="text-muted">5 minutes ago</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="pull-left"><i class="fa fa-bell-o fa-2x text-danger"></i></span>
+                            <span>Send project demo files to client<br><small class="text-muted">1 hour ago</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <p><a href="#" class="text-right">See all notifications</a></p>
+                    </li>
+                </ul>
+            </li>
+            <!-- /Notification -->
+            <!-- user login dropdown start-->
+            <li ng-if="isUserLoggedIn()" class="dropdown text-center">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    <img alt="" src="{{ userimage }}" class="img-circle profile-img thumb-sm" Has-Permission="/topavatarimage">
+                    <span class="username">{{ username }}</span> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
+                    <li Has-Permission="/profile"><a href="#edituser/{{ userId }}"><i class="fa fa-briefcase"></i>Profile</a></li>
+                    <li Has-Permission="/invitecoworkers"><a href="#inviteusers"><i class="ion-android-add-contact"></i>Invite Co-workers</a></li>
+                    <li><a href="" id="logoutLink" ng-click="logOut()"><i class="fa fa-sign-out"></i> Log out</a></li>
+                </ul>
+            </li>
+            <!-- user login dropdown end -->
+        </ul>
+        <!-- End right navbar -->
+    </nav>
+</header>
+<!-- Header Ends -->
+

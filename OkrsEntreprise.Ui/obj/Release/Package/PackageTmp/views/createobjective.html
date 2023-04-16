@@ -1,0 +1,206 @@
+﻿<div>
+    <div class="row" ng-include="getform()"></div>
+
+    <script type="text/ng-template" id="basicdetails">
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <form class="form-horizontal" name="addbasic" ng-submit="addnewForm()" role="form">
+                    <div class="form-group">
+                        <label for="btitle" class="col-sm-3 control-label">Objective Name *</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="btitle" name="btitle" placeholder="What do you want to achieve ?" ng-model="addformData.title" maxlength="100" required>
+                            <span class="text-danger" ng-show="addbasic.btitle.$error.required"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">Assign to *</label>
+                        <div class="col-sm-9">
+                            <div isteven-multi-select input-model="assigneeList" output-model="addformData.assignees"
+                                 button-label="icon name"
+                                 item-label="icon name maker"
+                                 tick-property="ticked"
+                                 group-property="msGroup"
+                                 output-properties="id isteam">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">Category *</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" ng-model="addformData.category" ng-options="item.title for item in goalcatList"></select>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="" class="col-sm-3 control-label">Private</label>
+                        <div class="col-sm-9">
+                            <div class="col-sm-6">
+                                <input type="checkbox" style="width: 16px" class="checkbox form-control" id="bisprivate" name="bisprivate" ng-model="addformData.isprivate">
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-7 col-sm-5 text-right">
+                            <u> <a href="" ng-click="tomore()">Add more details</a></u>
+                            <button class="btn btn-success" type="submit">Save</button>
+                        </div>
+                    </div>
+                    <!--<div class="alert alert-danger" ng-show="ErrorMessage != ''">    {{ ErrorMessage }}    </div>-->
+                </form>
+
+            </div>
+        </div>
+
+    </script>
+    <!-- End row -->
+
+    <script type="text/ng-template" id="moredetails">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                        <form class="form-horizontal" name="adddetail" ng-submit="addnewForm()" role="form">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dtitle" class="col-sm-4 control-label">Objective Name *</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="dtitle" name="dtitle" placeholder="What do you want to achieve ?" ng-model="addformData.title" maxlength="100" required>
+                                        <span class="text-danger" ng-show="adddetail.dtitle.$error.required"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Assign to *</label>
+                                    <div class="col-sm-8">
+                                        <div isteven-multi-select
+                                             input-model="assigneeList"
+                                             output-model="addformData.assignees"
+                                             button-label="icon name"
+                                             item-label="icon name maker"
+                                             tick-property="ticked"
+                                             group-property="msGroup"
+                                             output-properties="id isteam">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Category *</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" ng-model="addformData.category" ng-options="item.title for item in goalcatList"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Private</label>
+                                    <div class="col-sm-8">
+                                        <input type="checkbox" style="width: 16px" class="checkbox form-control" id="disprivate" name="disprivate" ng-model="addformData.isprivate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Description</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="5" id="ddescription" name="ddescription" maxlength="1000" ng-model="addformData.description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Due Date</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <!--<input type="text" placeholder="MM/dd/yyyy" name="duedate" class="form-control" datepicker-popup="{{format}}" is-open="datepickers.duedate"
+                                                   datepicker-options="dateOptions" close-text="Close" ng-model="addformData.duedate | date : 'MM/dd/yyyy'" date-type="string" />
+                                            <span class="input-group-addon" ng-click="open($event,'duedate')"><i class="glyphicon glyphicon-calendar"></i></span>-->
+
+                                            <datepicker720 date-format="{{format}}"
+                                                           button-prev='<i class="fa fa-arrow-circle-left"></i>'
+                                                           button-next='<i class="fa fa-arrow-circle-right"></i>'>
+                                                <input ng-model="addformData.duedate" type="text" class="form-control font-fontawesome font-light radius3" placeholder="Choose a date" />
+                                            </datepicker720>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Status</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" ng-model="addformData.status" ng-options="item.title for item in goalstatusList"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Priority</label>
+                                    <div class="col-sm-8">
+                                        <prioritybox value="addformData.priority"></prioritybox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="keyresult" class="col-sm-3 control-label">Key Results</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="keyresult" name="keyresult" placeholder="Add new Key Result" maxlength="100" ng-model="addformData.keyresulttitle">
+                                        <span class="text-danger" ng-show="showKeymsg">Key result title is required.</span>
+                                    </div>
+                                    <div class="col-sm-1 text-left">
+                                        <button type="button" class="btn btn-success   m-b-5" ng-click="addkeyresult()">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-offset-3">
+                                    <table class="table table-bordered">
+                                        <tr ng-repeat="item in addformData.keyresults" ng-include="getkrtemp(item)"></tr>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12 text-right">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-7 col-sm-5 text-right">
+                                        <u> <a href="" ng-click="tobasic()">Basic details</a></u>
+                                        <button class="btn btn-success" type="submit">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="alert alert-danger" ng-show="ErrorMessage != ''">    {{ ErrorMessage }}    </div>-->
+                        </form>
+
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="krdis">
+
+            <td class="col-xs-10">{{item.title }}</td>
+            <td class="col-xs-1 text-center">
+                <span class="ion-edit" style="cursor:pointer;" ng-click="editkr(item)"></span>
+            </td>
+            <td class="col-xs-1 text-center">
+                <span class="ion-trash-a" style="cursor:pointer;" ng-click="deletekr($index)"></span>
+            </td>
+
+        </script>
+
+        <script type="text/ng-template" id="kredit">
+            <td class="col-xs-10">
+                <input class="form-control" type="text" name="selkr" ng-model="selkr1.title" />
+            </td>
+            <td class="col-xs-1">
+                <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updatekr($index)"></span>
+            </td>
+            <td class="col-xs-1">
+                <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetkr()"></span>
+            </td>
+        </script>
+
+
+    </script>
+    <!-- End row -->
+
+</div>

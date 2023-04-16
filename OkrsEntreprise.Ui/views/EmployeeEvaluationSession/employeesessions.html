@@ -1,0 +1,41 @@
+﻿<h2>Evaluation Sessions</h2>
+
+<div class="row">
+   <!-- <div class="alert alert-danger" ng-show="ErrorMessage != ''">{{ ErrorMessage }}</div>-->
+</div>
+
+<div class="row m-t-15 m-b-15">
+    <div class="pull-right">
+        <button id="btnaddnew" type="button" class="btn btn-success   m-b-5" name="addnew" ng-click="NavigateToNewSession()">+</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <table class="table customTable table-hover">
+            <tr class="table-header">
+                <th>#Id</th>
+                <th>Animator</th> 
+                <th>Attendee</th> 
+                <th>Status</th>
+                <th>Actions</th> 
+            </tr>
+
+            <tr ng-repeat="item in sessionList">
+                <td><a href="/index.html#/employeesessiondetail/{{ item.Id }}">#{{ item.Id }}</a> </td>
+                <td><img class="img-circle profile-img thumb-xs" src="{{ item.Animator.Avatar }}" alt=""> - {{ item.Animator.name }}</td>
+               
+                <td><img class="img-circle profile-img thumb-xs" src="{{ item.Attendee.Avatar }}" alt=""> - {{ item.Attendee.name }}</td>
+                 
+                <td>{{ item.SessionStatus.title}}</td>
+                 
+
+                <td class="text-center">
+
+                    <span class="glyphicon glyphicon-edit" style="cursor:pointer;" ng-click="editsession(item.Id)"></span>
+                    <span class="glyphicon glyphicon-trash" style="cursor: pointer;" ng-click="deletesession(item.Id,$index)"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

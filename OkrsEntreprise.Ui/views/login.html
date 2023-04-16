@@ -1,0 +1,58 @@
+﻿ <div class="center-block marginfix">
+    <div class="wrapper-page animated fadeInDown">
+        <div class="panel panel-color panel-inverse">
+            <div class="panel-heading">
+                <h3 class="text-center m-t-10"> Sign In </h3>
+            </div>
+
+            <form name="loginForm" class="form-horizontal m-t-10 p-20 p-b-0" ng-submit="processForm()">
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" placeholder="Username" name="username" ng-model="formData.username" required />
+                        <span class="text-danger" ng-show="loginForm.username.$dirty && !loginForm.username.$valid">Username is required.</span>
+                    </div>
+                </div>
+                <div class="form-group ">
+
+                    <div class="col-xs-12">
+                        <input class="form-control" name="password" placeholder="Password" type="password" ng-model="formData.password" required />
+                        <span class="text-danger" ng-show="loginForm.password.$dirty && !loginForm.password.$valid">Valid password is required.</span>
+                    </div>
+                </div>
+
+                <!--<div class="form-group ">
+                    <div class="col-xs-12">
+                        <label class="cr-styled">
+                            <input type="checkbox" checked>
+                            <i class="fa"></i>
+                            Remember me
+                        </label>
+                    </div>
+                </div>-->
+
+                <div class="form-group">
+                    <div class="col-md-6 text-left">
+                        <a href="#register" class="btn btn-default w-md">Create an account</a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button class="btn btn-success w-md" type="submit">Log In</button>
+                    </div>
+
+                </div>
+                <!--<div class="form-group m-t-30">
+                    <div class="col-sm-7">
+                        <a href="#recoverpassword"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                    </div>
+                    <div class="col-sm-5 text-right">
+                        <a href="#register">Create an account</a>
+                    </div>
+                </div>-->
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+

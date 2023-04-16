@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html ng-app="okrsapp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Okrs" />
+    <title>Okrs</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <!--Animation css-->
+    <link href="css/animate.css" rel="stylesheet">
+
+
+    <link href="assets/timepicker/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <!--Icon-fonts css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet"/>
+    <link href="assets/material-design-iconic-font/css/material-design-iconic-font.min.css" rel="stylesheet" />
+ 
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="assets/morris/morris.css">
+    <!-- sweet alerts -->
+    <link href="assets/sweet-alert/sweet-alert.min.css" rel="stylesheet">
+    <link href="assets/notifications/notification.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/select2/select2.css" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/helper.css" rel="stylesheet">
+
+    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/isteven-multi-select.css">
+    <link rel="stylesheet" href="css/angular-datepicker.css">
+ 
+    <!-- easy piechart -->
+    <link rel="stylesheet" type="text/css" href="https://rendro.github.io/easy-pie-chart/stylesheets/jquery.easy-pie-chart.css">
+
+    <!-- Plugins css -->
+    <link href="assets/modal-effect/css/component.css" rel="stylesheet">
+    <link href="assets/nestable/jquery.nestable.css" rel="stylesheet" />
+
+    <link href="css/headersearchbox.css" rel="stylesheet" />
+    <link href="assets/liteaccordian/examples.css" rel="stylesheet" />
+    <!--<link href="assets/liteaccordian/liteaccordion.css" rel="stylesheet" />-->
+    <!--<script src="assets/liteaccordian/liteaccordion.jquery.min.js"></script>-->
+
+    <!--bootstrap-wysihtml5-->
+    <link href="assets/summernote/summernote.css" rel="stylesheet" />
+    
+    
+    <!-- X-editable css -->
+    <link type="text/css" href="assets/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> 
+
+
+    <!--bootstrap-tagautocomplete-->    
+    <!--<link href="assets/bootstrap-tagautocomplete/bootstrap.css" rel="stylesheet" />-->
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/TemplateOverride.css" rel="stylesheet" />
+</head>
+
+<body ng-controller="menu">
+    <!--<div class="container body-content">-->
+    <!-- Aside Start-->
+    <aside class="left-panel  collapsed" ng-show="isUserLoggedIn()">
+        <!-- brand -->
+        <div class="logo topHeadAdjust">
+            <a class="logo-expanded" style="width: 60%;" ng-if="isUserLoggedIn()"  ng-click="newgoal()" data-toggle="modal" data-target="#full-width-modal">
+                <span Has-Permission="/navigatetonewgoal"  class="btn btn-success">+</span>  
+            </a>
+       
+        
+        </div>
+        <!-- / brand -->
+        <!-- Navbar Start -->
+        <nav class="navigation">
+            <ul class="list-unstyled">
+                <!--/ Employee Section -->
+                <li ng-if="isUserLoggedIn()" Has-Permission="/dashboard"><a href="#dashboard"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboard</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/objectives"><a href="#objectives"><i class="zmdi zmdi-my-location"></i><span class="nav-label">Objectives</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/map"><a href="#map"><i class="fa fa-sitemap"></i> <span class="nav-label">Map</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/users"><a href="#users"><i class="fa fa-user"></i> <span class="nav-label">Users</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/teams"><a href="#teams"><i class="fa fa-users"></i> <span class="nav-label">Teams</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/closedobjectives"><a href="#closedobjectives"><i class="fa  fa-trash"></i> <span class="nav-label danger">Closed Objectives</span></a></li>
+                
+                <!--/ Admin Section -->
+                <li ng-if="isUserLoggedIn()" Has-Permission="/categories"><a href="#categories"><i class="glyphicon glyphicon-th-list"></i> <span class="nav-label">Category</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/status"><a href="#status"><i class="glyphicon glyphicon-off"></i> <span class="nav-label">Status</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/indicators"><a href="#indicators"><i class="fa fa-line-chart"></i>  <span class="nav-label">Indicator</span></a></li>
+                 
+                
+                <!--/ SysAdmin Section -->
+                <li ng-if="isUserLoggedIn()" Has-Permission="/sessions"><a href="#sessions"><i class="zmdi zmdi-slideshare"></i> <span class="nav-label">1-On-1 Sessions</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/employeesessions"><a href="#employeesessions"><i class="fa fa-check-square-o"></i> <span class="nav-label">Evaluation Sessions</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/surveys"><a href="#surveys"><i class="ion-clipboard"></i> <span class="nav-label">Surveys</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/masters"><a href="#tenants"><i class="fa fa-database"></i> <span class="nav-label">Tenants</span></a></li>
+                <li ng-if="isUserLoggedIn()" Has-Permission="/recognition"><a href="#recognition"><i class="ion-ribbon-b"></i> <span class="nav-label">Recognitions</span></a></li>
+
+
+            </ul> 
+        </nav>
+    </aside>
+    <section class="content">
+        <div ng-include="'views/header.html'" ng-show="isUserLoggedIn()"></div>
+        <div class="wraper container-fluid">
+            <div ng-view></div>
+        </div>
+        <div ng-include="'views/footer.html'" ng-show="isUserLoggedIn()"></div>
+    </section>
+
+    <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;" ng-if="isUserLoggedIn()">
+        <div class="modal-dialog " style="width:80%;">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom:none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="refreshgoals()">×</button>
+                    <h4 class="modal-title">ADD NEW OBJECTIVE</h4>
+                </div>
+                <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+                    <div class="panel-body">
+                        <createobjective last-goal-added="lastgoal" default-category="1" on-success-add="goalAdded"></createobjective>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="https://code.angularjs.org/1.4.5/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.5/angular-sanitize.js"></script>
+    <script src="https://code.angularjs.org/1.4.5/angular-route.min.js"></script>
+    <script src="scripts/angular-messages.min.js"></script>
+
+    <script src="https://code.angularjs.org/1.4.5/angular-animate.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+    <script src="scripts/isteven-multi-select.js"></script>
+    <script src="scripts/angular-datepicker.js"></script>
+    <script src="scripts/jquery.timeago.js"></script>
+    <!--<script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>-->
+    <script src="customscripts/app.js"></script>
+    <script src="customscripts/router.js"></script>
+    <script src="customscripts/filter.js"></script>
+    <script src="services/dataservice.js"></script>
+    <script src="controller/localdata.js"></script>
+    <script src="controller/managepermission.js"></script>
+    <script src="directives/PerformanceSurvey.js"></script>
+    <script src="directives/PerformanceSurveyDisplay.js"></script>
+    <script src="directives/CreateObjective.js"></script>
+    <script src="directives/RecognitionBox.js"></script>
+    <script src="directives/DisplayRecognition.js"></script>
+    <script src="directives/HasPermission.js"></script>
+    <script src="directives/ObjectiveBox.js"></script>
+    <script src="directives/ObjectiveBoxGrid.js"></script>
+    <script src="directives/EditGoal.js"></script>
+    <script src="directives/PriorityBox.js"></script>
+    <script src="directives/DisplayPriority.js"></script>
+
+    <!--<script src="directives/MapElement.js"></script>-->
+    <script src="https://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
+    <script src="controller/menu.js"></script>
+    <script src="controller/home.js"></script>
+    <script src="controller/dashboard.js"></script>
+    <script src="controller/companydashboard.js"></script>
+    <script src="controller/teamdashboard.js"></script>
+    <script src="controller/goal.js"></script>
+    <script src="controller/editgoal.js"></script>
+    <script src="controller/login.js"></script>
+    <script src="controller/register.js"></script>
+    <script src="controller/sessions.js"></script>
+    <script src="controller/oneOnOneSession.js"></script>
+    <script src="controller/sessiondetail.js"></script>
+    <script src="controller/employeesessions.js"></script>
+    <script src="controller/employeesession.js"></script>
+    <script src="controller/employeesessiondetail.js"></script>
+    <script src="services/surveyservice.js"></script>
+    <script src="controller/editsurvey.js"></script>
+    <script src="controller/survey.js"></script>
+    <script src="controller/inviteusers.js"></script>
+    <script src="services/goalservice.js"></script>
+    <script src="controller/map.js"></script>
+    <script src="services/goalcategoryservice.js"></script>
+    <script src="controller/goalcategories.js"></script>
+    <script src="controller/editcategory.js"></script>
+    <script src="controller/closedgoals.js"></script> 
+    <script src="services/goalstatusservice.js"></script>
+    <script src="controller/goalstatus.js"></script>
+    <script src="controller/editstatus.js"></script>
+     <script src="services/teamservice.js"></script>
+    <script src="controller/teams.js"></script>
+    <script src="controller/team.js"></script>
+    <script src="controller/editteam.js"></script>
+    <script src="controller/teamprofile.js"></script>
+    <script src="services/userservice.js"></script>
+    <script src="controller/users.js"></script>
+    <script src="controller/edituser.js"></script>
+    <script src="controller/userprofile.js"></script>
+    <script src="services/dashboardservice.js"></script>
+    <script src="controller/activities.js"></script>
+    <script src="services/activitiesservice.js"></script>
+    <script src="services/tenantservice.js"></script>
+    <script src="controller/tenants.js"></script>
+    <script src="controller/edittenant.js"></script>
+    <script src="services/recognitionservice.js"></script>
+    <script src="controller/recognitions.js"></script>
+
+    <script src="services/indicatorservice.js"></script>
+    <script src="controller/indicators.js"></script>
+    <script src="controller/editindicator.js"></script>
+    
+
+<!-- js placed at the end of the document so the pages load faster -->
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/modernizr.min.js"></script>
+    <script src="scripts/pace.min.js"></script>
+    <script src="scripts/wow.min.js"></script>
+    <script src="scripts/jquery.scrollTo.min.js"></script>
+    <script src="scripts/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/chat/moment-2.2.1.js"></script>
+
+    <!-- Counter-up -->
+    <script src="scripts/waypoints.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery.counterup.min.js" type="text/javascript"></script>
+
+    <!--FLOT Chart-->
+    <script src="assets/flot-chart/jquery.flot.js"></script>
+    <script src="assets/flot-chart/jquery.flot.pie.js"></script>
+
+    <!--Morris Chart-->
+    <script src="assets/morris/morris.min.js"></script>
+    <script src="assets/morris/raphael.min.js"></script>
+
+    <!-- sweet alerts -->
+    <script src="assets/sweet-alert/sweet-alert.min.js"></script>
+    <script src="assets/notifications/notify.min.js"></script>
+    <script src="assets/notifications/notify-metro.js"></script>
+    <script src="assets/notifications/notifications.js"></script>
+
+    <!-- Modal-Effect -->
+    <script src="assets/modal-effect/js/classie.js"></script>
+    <script src="assets/modal-effect/js/modalEffects.js"></script>
+
+
+    <script src="scripts/jquery.app.js"></script>
+    <script src="assets/select2/select2.min.js" type="text/javascript"></script>
+    <script src="assets/liteaccordian/jquery.zaccordion.js"></script>
+
+    <!--form validation init-->
+    <script src="assets/summernote/summernote.min.js"></script>
+
+    <!--bootstrap-tagautocomplete-->    
+    <script src="assets/bootstrap-tagautocomplete/bootstrap-typeahead.js"></script>
+    <script src="assets/bootstrap-tagautocomplete/rangy-core.js"></script>
+    <script src="assets/bootstrap-tagautocomplete/caret-position.js"></script>
+    <script src="assets/bootstrap-tagautocomplete/bootstrap-tagautocomplete.js"></script>
+    
+    
+    
+
+    <!-- XEditable Plugin -->
+    <script type="text/javascript" src="assets/bootstrap3-editable/moment.min.js"></script>    
+    <script type="text/javascript" src="assets/bootstrap3-editable/bootstrap-editable.js"></script> 
+    
+    <script type="text/javascript">
+        /* ==============================================
+                          Counter Up
+           =============================================== */
+        jQuery(document).ready(function ($) {
+            $('.counter').counterUp({
+                delay: 100,
+                time: 1200
+            });
+        });
+    </script>
+    <!--</div>-->
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+﻿
+<div>
+    <div class="portlet-heading" style="padding-bottom:0px;">
+        <div class="text-dark">
+            <div class="portlet-title form-inline" style="float:none;">
+                <div class="col-md-12">
+
+                    <div class="col-md-6 col-sm-6 form-group text-left">
+                        <div ng-include="gettitletemp()"></div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 form-group text-left">
+                        <div class="progress progress-md" style="width:100%; margin-top:11px;cursor:pointer" data-ng-click="chartType = 0" popover-animation="true" popover-template="'updateChartStatus.html'" popover-placement="top" popover-trigger="click">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{objective.progress}}" aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {{ objective.progress}}%;">
+                                {{ objective.progress }} %
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 form-group text-right">
+
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <select class="form-control" ng-model="objective.status" ng-options="obj.title for obj in goalstatusList" ng-change="updateGoalStatus()"></select>
+                        </div>
+
+                        <div class="col-md-2 col-sm-2 col-xs-2 m-t-5">
+                            <a data-toggle="collapse" data-parent="#accordion1" href="/objectives#portlet{{ objective.id }}"><i class="ion-minus-round"></i></a>
+                        </div>
+
+                        <div class="col-md-2 col-sm-2 col-xs-2">
+                            <ul class="nav navbar-nav">
+
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false"><span class="fa fa-ellipsis-v"></span></a>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="/index.html#/editgoal/{{ objective.id }}">More Details</a></li>
+                                        <li><a class="text-{{ objective.isopen ? 'danger' : 'default' }} " data-value="{{objective.isopen}}" ng-click="editisopen()"> {{ objective.isopen ? 'Close' : 'Open' }}</a></li>
+                                        <li><a class="text-danger" ng-click="deletegoal()">Delete</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr />
+    </div>
+
+    <div id="portlet{{objective.id}}" class="panel-collapse collapse">
+
+        <div class="panel-body" style="padding-bottom:0px;">
+
+            <div class="form-horizontal" id="keyresultlist" ng-repeat="kr in objective.keyresults" ng-include="getkrtemp(kr)"></div>
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12 middle-align">
+
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <input type="text" class="form-control" id="keyresult" name="keyresult"
+                                   placeholder="+ Add new Key Result" maxlength="150" ng-model="objective.keyresulttitle"
+                                   ng-keydown="$event.which === 13 && addkeyresult()">
+
+                            <span class="text-danger" ng-show="showKeymsg">Key result title is required.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <hr />
+        </div>
+    </div>
+
+    <div class="panel-body" style="padding-top:0px;">
+        <div class="row m-l-15">
+
+            <div class="col-md-9 col-sm-9 col-xs-6">
+
+                <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in objective.users" />
+                <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in objective.teams" />
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+
+                <div class="col-md-2 col-sm-2 col-xs-1 text-right">
+                    <a><i ng-if="objective.hasRecognition" data-toggle="tooltip" title="Public" tool class="fa fa-trophy fa-lg"></i></a>
+                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-1 text-right">
+                    <a><i ng-if="!objective.isprivate" data-toggle="tooltip" title="Public" tool class="fa fa-unlock fa-lg"></i></a>
+                    <a><i ng-if="objective.isprivate" data-toggle="tooltip" title="Private" class="fa fa-lock fa-lg"></i></a>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-2 middle-align text-center small">
+                    <b>
+                        <displaypriority value="objective.priority"></displaypriority>
+                    </b>
+                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-1 text-right">
+                    <a><i ng-if="objective.isaligned" data-toggle="tooltip" title="Alignment" class="fa fa-chain fa-lg"></i></a>
+                    <a><i ng-if="!objective.isaligned" data-toggle="tooltip" title="Alignment" class="fa fa-chain-broken fa-lg"></i></a>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-4 middle-align">
+                    <div class="form-inline">
+                        <!--<i ng-if="(objective.duedate  | date:'d M') > (currentDate | date:'d M')" data-toggle="tooltip" title="Due Date" class="fa fa-clock-o fa-lg col-md-3 col-sm-3 col-xs-3"></i>-->
+                        <p class=" badge bg-{{objective.duedate != null ?(objective.duedate) < (currentDate)?'danger':'default':'default'}}" data-compare="{{(objective.duedate) < (currentDate)}}" data-date="{{(objective.duedate)}}" data-cdate="{{(currentDate)}}">
+                            <i data-toggle="tooltip" title="Due Date" class="fa fa-clock-o fa-lg "></i>
+                            {{ objective.duedate == null ? 'Not Set' : objective.duedate | date : 'dd MMM' }}
+                        </p>
+                        <!--<p ng-if="(objective.duedate | date:'d M') < (currentDate | date:'d M')" class="col-md-9 col-sm-9 col-xs-8 text-left">{{ objective.duedate == null ? 'Not Set' : objective.duedate | date : 'dd MMM' }}</p>
+                        <p ng-if="(objective.duedate == null)" class="col-md-9 col-sm-9 col-xs-8 text-left">{{ 'P:Not Set'}}</p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="updateChartStatus.html">
+        <div class="animated fadeIn popoverFade" ng-form="newKeyForm">
+            <div class="row m-b-10">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <label class="control-label">Status</label>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px; padding-right:0px;">
+                    <input type="number" max="100" ng-model="objective.newprogress" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-touched" style="width:100%;">
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:0px;">
+                    <h4>%</h4>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3 text-left">
+                    <!--<div class="col-md-offset-4">-->
+                    <button ng-disabled="newKeyForm.$invalid" class="btn btn-success" type="button" ng-click="updateprogress()" id="addKeyBtn"><span>Ok</span></button>
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="krdis">
+
+        <div class="row form-group">
+            <div class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12 middle-align">
+                <h6 class="col-md-10 col-sm-10 col-xs-10"> {{ kr.title }}</h6>
+                <div class="col-md-1 col-sm-1  col-xs-1">
+                    <span class="ion-edit editkrbutton" style="cursor:pointer;" ng-click="editkr(kr)"></span>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    <span class="ion-trash-a deletekrbutton" style="cursor:pointer;" ng-click="deletekr($index)"></span>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="kredit">
+        <div class="row form-group">
+            <div class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12 middle-align">
+                <div class="col-md-10 col-sm-10 col-xs-10">
+                    <input class="form-control" type="text" name="selkr" ng-model="selkr.title" />
+                </div>
+                <div class="col-md-1 col-sm-1  col-xs-1">
+                    <span class="ion-checkmark-round" style="cursor:pointer;" ng-click="updatekr($index)"></span>
+                </div>
+                <div class="col-md-1 col-sm-1  col-xs-1">
+                    <span class="ion-close-round" style="cursor:pointer;" ng-click="resetkr()"></span>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script type="text/ng-template" id="edittitle">
+        <div class="col-md-12 form-group" id="displaytitle">
+            <a class="col-md-1 text-right" href="/index.html#/editgoal/{{ objective.id }}">#{{ objective.id }}</a>
+            <div class="col-md-9">
+                <!--<input ng-model="objective.title" class="form-control" style="width:100%;" onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px';" />-->
+                <textarea ng-model="objective.title" rows="1" class="form-control" style="width:100%; min-height:40px; padding:5px;" ng-keyup="autoExpand($event)"></textarea>
+            </div>
+            <div class="col-md-1">
+                <span class="ion-checkmark-round m-l-10" style="cursor:pointer;" ng-click="updatetitle()"></span>
+            </div>
+            <div class="col-md-1">
+                <span class="ion-close-round m-l-10" style="cursor:pointer;" ng-click="resettitle()"></span>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="distitle">
+        <div class="col-md-12 form-group" id="displaytitle">
+            <a class="col-md-1 text-right" href="/index.html#/editgoal/{{ objective.id }}">#{{ objective.id }}</a>
+            <!--ng-click="editGoal(objective.id)" data-toggle="modal" data-target="#edit-Goal-modal" -->
+            <div class="col-md-11 text-left">
+                - {{ objective.title}}
+                <span class="ion-edit edittitlebutton m-l-10" ng-click="edittitle()"></span>
+            </div>
+        </div>
+    </script>
+
+</div>
+

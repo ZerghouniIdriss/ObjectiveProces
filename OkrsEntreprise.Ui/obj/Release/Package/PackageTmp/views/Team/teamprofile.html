@@ -1,0 +1,293 @@
+<!--{{ editformData}}-->
+<!--{{ userList }}-->
+<div class="wraper container-fluid profile-container" style="padding-top:0px;">
+    <div class="row">
+        <div class="col-md-6" style="width: 50%;float: left;padding-top: 20px">
+            <div class="col-md-3">
+                <img class="img-circle thumb-md" src="{{editformData.Avatar}}" alt="" style="cursor:pointer;" data-toggle="modal" data-target="#full-width-modal">
+            </div>
+            <div class="col-md-9">
+                <div class="row name">{{editformData.name}}</div>
+                <div class="row title">{{editformData.description}}</div>
+            </div>
+        </div>
+        <div class="col-md-6 chartContainer" style="width: 50%;float: left;">
+            
+            <div class="col-md-2 floatright">
+                <div class="row algined">
+                    <div id="alignedChart" class="chart" data-percent="{{ aligned }}">{{ aligned }}%</div>
+                </div>
+                <div style="position:absolute; left:35px;">Aligned</div>
+            </div>
+            <div class="col-md-4 floatright">
+                <div class="row overall">
+                    <div class="chart" id="overallChart" data-percent="{{ overallProgress }}">{{ overallProgress }}%</div>
+                </div>
+                <div style="position:absolute; left:15px;">Overall Progress</div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:4%;">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li class="" ng-class="{ active: isSet(1) }">
+                    <a href ng-click="setTab(1)" data-toggle="tab" aria-expanded="false">
+                        <span class="visible-xs"><i class="fa fa-home"></i></span>
+                        <span class="hidden-xs">Objectives and Key Results</span>
+                    </a>
+                </li>
+                <li class="" ng-class="{ active: isSet(2) }">
+                    <a href ng-click="setTab(2)" data-toggle="tab" aria-expanded="false">
+                        <span class="visible-xs"><i class="fa fa-user"></i></span>
+                        <span class="hidden-xs">Users</span>
+                    </a>
+                </li>
+                <li class="" ng-class="{ active: isSet(3) }">
+                    <a href ng-click="setTab(3)" data-toggle="tab" aria-expanded="false">
+                        <span class="visible-xs"><i class="fa fa-user"></i></span>
+                        <span class="hidden-xs">Details</span>
+                    </a>
+                </li>
+                <li Has-Permission="/recognition" ng-class="{ active: isSet(4) }">
+                    <a href ng-click="setTab(4)" data-toggle="tab" aria-expanded="false">
+                        <span class="visible-xs"><i class="fa fa-user"></i></span>
+                        <span class="hidden-xs">Recognition</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" ng-class="{ active: isSet(1) }" ng-show="isSet(1)">
+                    <div class="row">
+                        <div class="portlet" ng-repeat="item in editformData.Objectives">
+
+                            <objectivebox box-objective="item" data-index="$index" data-deleted="objectiveDeleted"></objectivebox>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane" ng-class="{ active: isSet(2) }" ng-show="isSet(2)">
+
+                    <div class="row">
+
+                        <div class="panel-default">
+
+                            <div class="panel-body">
+                                <h4 class="panel-title">Manage Users:</h4>
+                            </div>
+                            <div class="panel-body form-horizontal">
+                                <div class="col-md-8 form-group">
+                                    <div class="col-md-2 control-label"><b>Add User</b></div>
+                                    <div class="col-md-6">
+                                        <select id="employeeSelect" class="required select2">
+                                            <option value="">Select Employee</option>
+                                            <option value="{{item.Id }}" ng-repeat="item in userList">{{ item.UserName }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 text-left">
+                                        <button class="btn btn-success   m-b-5" ng-click="addUser()">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 form-group" ng-repeat="item in editformData.Users">
+                                    <div class="col-md-2 control-label"></div>
+                                    <div class="col-md-6 form-inline form-group ng-scope">
+                                        <div class="col-md-4" style="width: 79%">
+                                            <img class="m-r-10 thumb-sm br-radius" src="{{item.Avatar}}" alt="member">
+                                            {{item.UserName}}
+                                            <!--<i class="ion-trash-a pull-right" ng-click="deleteUser($index)"></i>-->
+                                        </div>
+                                        <i class="ion-trash-a pull-right form-control" style="cursor:pointer" ng-click="deleteUser($index)"></i>
+                                    </div>
+                                </div>
+                                <!--<div class="row" ng-repeat="item in editformData.Users">
+                                    <div class="col-md-4">
+                                        <img class="m-r-10 thumb-sm br-radius" src="{{item.Avatar}}" alt="member">
+                                        {{item.UserName}}
+                                        <i class="ion-trash-a pull-right" ng-click="deleteUser($index)"></i>
+                                    </div>
+                                </div>-->
+                                <!--<div class="row">
+                                    <div class="col-md-6">
+
+                                        <select id="employeeSelect" class="required select2">
+
+                                            <option value="">Select Employee</option>
+                                            <option value="{{item.Id }}" ng-repeat="item in userList">{{ item.UserName }}</option>
+
+                                        </select>
+
+
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <button class="btn btn-success   m-b-5" ng-click="addUser()">+</button>
+                                    </div>
+                                </div>-->
+
+                            </div> <!--Panel-body -->
+                        </div> <!-- Panel-->
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane" ng-class="{ active: isSet(3) }" ng-show="isSet(3)">
+
+                    <div class="row">
+                        <div class="panel-body">
+                            <h4 class="panel-title">Basic Info:</h4>
+                        </div>
+                        <div class="panel-body form-horizontal">
+                            <div class="col-md-8 form-group">
+                                <div class="col-md-2 control-label"><b>Team Name</b></div>
+                                <div class="col-md-6">
+                                    <div class="form-inline" ng-include="getNMeditTemp()">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <div class="col-md-2 control-label"><b>Description</b></div>
+                                <div class="col-md-6">
+                                    <div class="form-inline" ng-include="getDeseditTemp()">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" ng-class="{ active: isSet(4) }" ng-show="isSet(4)">
+                    <div class="row userdtails">
+                        <div class="panel-body">
+                            <h4 class="panel-title">Recognition</h4>
+
+                        </div>
+                        <div class="row row col-lg-12">
+                            <div class="portlet" ng-repeat="recognition in editformData.Recognitions">
+                                <div class="panel-default">
+                                    <div class="panel-body">
+                                        <div class="horizontal">
+                                            <div class="col-lg-6">
+                                                <div class="col-md-2">
+                                                    <img class="m-r-5 thumb-sm br-radius pointer" src="{{recognition.giver.Avatar}}" alt="member" data-ng-click="chartType = 0" popover-animation="true" popover-template="'UnassignUser.html'" popover-placement="bottom" popover-trigger="click">
+                                                </div>
+                                                <div class="col-md-10">
+                                                    {{recognition.giver.UserName}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="col-md-12" ng-show="recognition.receivers.lenght > 0">
+                                                    User(s)
+                                                </div>
+                                                <div class="col-md-12" ng-repeat="user in recognition.receivers">
+                                                    <div class="col-md-2">
+                                                        <img class="m-r-5 thumb-sm br-radius pointer" src="user.Avatar" alt="member" data-ng-click="chartType = 0" popover-animation="true" popover-template="'UnassignUser.html'" popover-placement="bottom" popover-trigger="click">
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        {{user.UserName}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" ng-show="recognition.teamReceivers.lenght > 0">
+                                                    Team(s)
+                                                </div>
+                                                <div class="col-md-12" ng-repeat="team in recognition.teamReceivers">
+                                                    <div class="col-md-2">
+                                                        <img class="m-r-5 thumb-sm br-radius pointer" src="team.Avatar" alt="member" data-ng-click="chartType = 0" popover-animation="true" popover-template="'UnassignUser.html'" popover-placement="bottom" popover-trigger="click">
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        {{team.name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div class="horizontal">
+                                            <div class="col-lg-12">
+                                                {{recognition.text}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/ng-template" id="NMedit">
+        <input ng-model="editformData.NewNM" class="form-control" />
+        <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updateNM()"></span>
+        <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetNM()"></span>
+    </script>
+    <script type="text/ng-template" id="NMdisplay">
+        <input type="text" class="form-control" ng-model="editformData.name" disabled />
+        <i class="ion-edit pull-right form-control" style="cursor:pointer;" ng-click="setNMeditTemp()"></i>
+    </script>
+    <script type="text/ng-template" id="Desedit">
+        <input ng-model="editformData.NewDes" class="form-control" />
+        <span class="form-control ion-checkmark-round" style="cursor:pointer;" ng-click="updateDes()"></span>
+        <span class="form-control ion-close-round" style="cursor:pointer;" ng-click="resetDes()"></span>
+    </script>
+    <script type="text/ng-template" id="Desdisplay">
+        <input type="text" class="form-control" ng-model="editformData.description" disabled />
+        <i class=" ion-edit pull-right form-control" style="cursor:pointer;" ng-click="setDeseditTemp()"></i>
+    </script>
+
+
+
+    <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+
+                <div class="modal-header" style="border-bottom:none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h4 class="modal-title">Preview and upload image</h4>
+                </div>
+
+                <div class="panel panel-default" style="border-top:1px solid rgba(0,0,0,0.08);">
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="file" id="fileUploader" class="m-b-15" onchange="angular.element(this).scope().previewImage(this.files)" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img src="{{editformData.Avatar}}" alt="" id="previewImageTag" class="img-responsive" />
+                            </div>
+                        </div>
+
+                    </div> <!-- panel-body -->
+
+                </div> <!-- panel -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary start" ng-click="uploadImage()"><i class="glyphicon glyphicon-upload"></i>Start upload</button>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            var employeeSelect;
+
+            jQuery(document).ready(function () {
+
+                // Select2
+                employeeSelect = jQuery("#employeeSelect").select2({
+                    width: '100%'
+                });
+
+
+            });
+        </script>

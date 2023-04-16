@@ -1,0 +1,34 @@
+﻿
+<ol class="dd-list dd-nodrag" ng-if="(goalList | filter:{ParentId : goal.id}).length > 0">
+    <li class="dd-item" ng-repeat="goal in goalList | filter:{ParentId : goal.id}">
+        <div class="dd-handle ">
+            <div class="row">
+                <div class="col-sm-12" style="float:left;padding-left: 0px">
+                    <a class="text-left" href="/index.html#/editgoal/{{ goal.id }}">
+                        <div class="" style="float: left; ">
+                            <div class="text-left col-sm-12">
+                                #{{ goal.id }} - {{ goal.title}}
+                            </div>
+                        </div>
+                        <div style="float:right">
+                            <div class="col-sm-1">
+                                <span>
+                                    <label class="text-left"> {{ goal.status.title }}</label>
+                                </span>
+                            </div>
+                            <div class="col-sm-1">
+                                <displaypriority value="goal.priority"></displaypriority>
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in goal.users" />
+                                <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in goal.teams" />
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <mapelement></mapelement>
+
+    </li>
+</ol>

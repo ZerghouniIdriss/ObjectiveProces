@@ -1,0 +1,205 @@
+﻿<link href="../assets/nestable/jquery.nestable.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <h3 class="panel-title">Map Lists </h3>
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="text-center" id="nestable_list_menu">
+                                <button type="button" class="btn btn-success  btn-sm" ng-click="expandAll()">Expand All</button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="collapseAll()">Collapse All</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <!-- Nested node template -->
+                    <script type="text/ng-template" id="nodes_renderer.html">
+                        <div ui-tree-handle class="tree-node tree-node-content">
+                            <div class=" col-lg-12" style="width:100%">
+                                <div class="" style="float:left;width:3%">
+                                    <span ng-if="goal.Goals.length > 0" class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)">
+                                        <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': collapsed,'glyphicon-chevron-down': !collapsed}"></span>
+                                    </span>
+                                </div>
+                                <div style="width:97%;float:right">
+                                    <a class="text-left" href="/index.html#/editgoal/{{ goal.id }}">
+                                        <div class="" style="float:left" ng-style="{'width':goal.width }">
+                                                #{{ goal.id }} - {{ goal.title}}
+                                        </div>
+                                        <div class="" style="float:left" ng-style="{'width':goal.width2}">
+                                            <div style="width:20%;float:left">
+                                                <span>
+                                                    <label class="goal.status.title">{{ goal.status.title }}</label>
+                                                </span>
+                                            </div>
+                                            <div style="width:10%;float:left">
+                                                <displaypriority value="goal.priority"></displaypriority>
+                                            </div>
+                                            <div style="width:70%;float:left">
+                                                <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in goal.users" />
+                                                <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in goal.teams" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <ol ng-if="(goal.Goals.length) > 0" ui-tree-nodes="" ng-model="goal.Goals" ng-class="{hidden: collapsed}">
+                            <li ng-repeat="goal in goal.Goals" ui-tree-node ng-include="'nodes_renderer.html'">
+                            </li>
+                        </ol>
+                    </script>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ui-tree data-drag-enabled="false">
+                                <ol ui-tree-nodes="" ng-model="goalList" id="tree-root">
+                                    <li ng-repeat="goal in goalList" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="panel-body">
+                <div class="dd dd-nodrag" id="nestable_list_3">-->
+                <!--<script type="text/ng-template" id="goalList">
+                    <ol class="dd-list" ng-if="(goalList | filter:{ParentId : goalList.id}).length > 0">
+                        <li class="dd-item dd-nodrag" ng-repeat="goal in goalList | filter:{ParentId : goal.id}" ng-include="'goalList'"></li>
+                    </ol>
+                </script>-->
+                <!--<ol class="dd-list dd-nodrag">
+                <li data-id="{{goal.id}}" class="dd-item dd-nodrag" ng-repeat="goal in goalList | filter:{ParentId : null}">
+                    <div class="dd-handle dd-nodrag">
+                        <div class="row">
+                            <div class="col-sm-12" style="width: 97%;float:left;padding-left: 0px">
+                                <a class="text-left" href="/index.html#/editgoal/{{ goal.id }}">
+
+                                    <div class="" style="width: 58%;float: left; ">
+
+                                        <div class="text-left col-sm-12 ">
+                                            #{{ goal.id }} - {{ goal.title}}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span>
+                                            <label class="goal.status.title"> {{ goal.status.title }}</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <displaypriority value="goal.priority"></displaypriority>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in goal.users" />
+                                        <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in goal.teams" />
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <mapelement></mapelement>-->
+                <!--<ol class="dd-list" ng-if="(goalList | filter:{ParentId : goal.id}).length > 0">
+                    <li class="dd-item" ng-repeat="goal in goalList | filter:{ParentId : goal.id}">
+                        <div class="dd-handle ">
+                            <div class="row">
+                                <div class="col-sm-12" style="width: 97%;float:left;padding-left: 0px">
+                                    <a class="text-left" href="/index.html#/editgoal/{{ goal.id }}">
+                                        <div class="" style="width: 56.80%;float: left; ">
+
+                                            <div class="text-left col-sm-12">
+                                                #{{ goal.id }} - {{ goal.title}}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <span>
+                                                <label class="text-left"> {{ goal.status.title }}</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <displaypriority value="goal.priority"></displaypriority>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in goal.users" />
+                                            <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in goal.teams" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <ol class="dd-list" ng-if="(goalList | filter:{ParentId : goal.id}).length > 0">
+                            <li class="dd-item" ng-repeat="goal in goalList | filter:{ParentId : goal.id}">
+                                <div class="dd-handle ">
+                                    <div class="row">
+                                        <div class="col-sm-12" style="width: 97%;float:left;padding-left: 0px">
+                                            <a class=" text-left" href="/index.html#/editgoal/{{ goal.id }}">
+                                                <div class="" style="width: 57.80%;float: left; ">
+
+                                                    <div class="text-left col-sm-12">
+                                                        #{{ goal.id }} - {{ goal.title}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <span>
+                                                        <label class="goal.status.title"> {{ goal.status.title }}</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <displaypriority value="goal.priority"></displaypriority>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <img class="img-circle thumb-xs m-r-5 " src="{{user.Avatar}}" ng-repeat="user in goal.users" />
+                                                    <img class="img-circle thumb-xs m-r-5 " src="{{team.Avatar}}" ng-repeat="team in goal.teams" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>-->
+                <!--</li>
+                </ol>-->
+                <!--</div>
+                </div>-->
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- End of row -->
+</div>
+<!-- / Panel -->
+
+<script src="../assets/nestable/jquery.nestable.js"></script>
+
+<script src="../assets/nestable/nestable.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

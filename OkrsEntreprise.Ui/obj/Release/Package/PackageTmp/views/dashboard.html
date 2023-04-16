@@ -1,0 +1,156 @@
+﻿<div class="dashboard">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">Company Progress</h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="portlet-body">
+                    <div class="donutChart" id="overallChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">My Progress</h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="portlet-body">
+                    <div class="donutChart align-center" id="byProgressChart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">Recent Activity</h3>
+                    <div class="clearfix"></div>
+                    <div class="portlet-widgets">
+                        <a href="#activities"><small style="font-weight: bold;" class="text-dark m-r-10">View All</small></a>
+                    </div>
+                </div>
+                <div class="portlet-body activityContainer" ng-mouseenter="activityScrollerarrow = true" ng-mouseleave="activityScrollerarrow = false">
+                    <div class="row scrollerPanel"  id="activityScroller">
+                        <div class="row m-b-10" ng-repeat="act in RecentActivities">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-1 col-sm-1 col-xs-1 text-left">
+                                    <img class="thumb-sm br-radius" src="{{act.Avatar}}" alt="member">
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-3 pull-right">
+                                    <h5><small class="text-muted">{{timeAgo(act.ActivityDate)}}</small></h5>
+                                </div>
+
+                                <div class="col-md-7 col-sm-7 col-xs-7 middle-align m-l-10">
+                                    <span class="text-left" style="display:block;"><strong><small>{{act.Actor}}</small></strong></span>
+                                    <span class="media-body block">{{act.BodyContent}}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center" ng-show="activityScrollerarrow">
+                        <i ng-click="scrollPanel('activityScroller')" class="glyphicon glyphicon-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-color panel-success" ng-mouseenter="trackScrollerarrow =true" ng-mouseleave="trackScrollerarrow =false">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span> On Track</span><span class="pull-right">{{ OnTrackObjectives.length }}</span></h3>
+                </div>
+                <div class="panel-body activityContainer" >
+                    <div class="row scrollerPanel" id="ontrackScroller">
+                        <ul class="objListContainer">
+                            <li ng-repeat="obj in OnTrackObjectives">
+                                <div class="row m-b-10">
+                                    <a href="#editgoal/{{ obj.id }}">
+                                        <div class="col-lg-9">
+                                            <small>#{{ obj.id }}</small>
+                                            <span data-toggle="tooltip" title="{{obj.title}}" class="block"><strong>{{obj.title.length>25?obj.title.substring(0,25)+"...":obj.title}}</strong></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <small class="text-muted">{{obj.duedate | date : 'MM/dd/yyyy' }}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    <div style="text-align:center" ng-show="trackScrollerarrow">
+                        <i ng-click="scrollPanel('ontrackScroller')" class="glyphicon glyphicon-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-color panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span>At Risk</span><span class="pull-right">{{ AtRiskObjectives.length }}</span></h3>
+                </div>
+                <div class="panel-body activityContainer" ng-mouseenter="atriskarrow =true" ng-mouseleave="atriskarrow =false">
+                    <div class="row scrollerPanel" id="atriskScroller">
+                        <ul class="objListContainer">
+                            <li ng-repeat="obj in AtRiskObjectives">
+                                <div class="row m-b-10">
+                                    <a href="#editgoal/{{ obj.id }}">
+                                        <div class="col-lg-9">
+                                            <small>#{{ obj.id }}</small>
+                                            <span data-toggle="tooltip" title="{{obj.title}}" class="block"><strong>{{obj.title.length>25?obj.title.substring(0,25)+"...":obj.title}}</strong></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <small class="text-muted">{{obj.duedate | date : 'MM/dd/yyyy' }}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                       
+                    </div>
+                    <div style="text-align:center" ng-show="atriskarrow">
+                        <i ng-click="scrollPanel('atriskScroller')" class="glyphicon glyphicon-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-color panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span>Delayed</span><span class="pull-right">{{ DelayedObjectives.length }}</span></h3>
+                </div>
+                <div class="panel-body activityContainer" ng-mouseenter="delayedarrow =true" ng-mouseleave="delayedarrow =false">
+                    <div class="row scrollerPanel" id="delayedkScroller">
+                        <ul class="objListContainer">
+                            <li ng-repeat="obj in DelayedObjectives">
+                                <div class="row m-b-10">
+                                    <a href="#editgoal/{{ obj.id }}">
+                                        <div class="col-lg-9">
+                                            <small>#{{ obj.id }}</small>
+                                            <span data-toggle="tooltip" title="{{obj.title}}" class="block"><strong>{{obj.title.length>25?obj.title.substring(0,25)+"...":obj.title}}</strong></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <small class="text-muted">{{obj.duedate | date : 'MM/dd/yyyy' }}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="text-align:center" ng-show="delayedarrow">
+                        <i ng-click="scrollPanel('delayedkScroller')" class="glyphicon glyphicon-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+

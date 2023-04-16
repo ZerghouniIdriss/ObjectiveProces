@@ -1,0 +1,416 @@
+.customTable td {
+    vertical-align: middle !important;
+}
+
+    .customTable td .glyphicon {
+        right: 35%;
+    }
+
+    .customTable td .media-main {
+        text-align: left;
+    }
+
+        .customTable td .media-main img {
+            cursor: pointer;
+        }
+
+.profile-container .profile-img {
+    width: 85%;
+    height: 80%;
+}
+
+.profile-container .name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.profile-container .title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.profile-container .phone {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profile-container .email {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profile-container .algined {
+    font-size: 20px;
+}
+
+.profile-container .objective {
+    color: blue;
+    font-size: 34px;
+}
+
+.profile-container .overall {
+    font-size: 20px;
+}
+
+.profile-container .progress-bar {
+    font-size: 14px;
+    line-height: 15px !important;
+    background-color: #34c73b;
+}
+
+.profile-container .progress-bar-green {
+    background-color: #b8eabb;
+}
+
+.profile-container .row {
+    margin-bottom: 5px;
+}
+
+.profile-container .fa {
+    margin-right: 7px;
+}
+
+.profile-container .pointer {
+    cursor: pointer;
+}
+
+.profile-container .member-img {
+    width: 50%;
+    height: 90%;
+    cursor: pointer;
+}
+
+.profile-container .team-img {
+    margin-top: -5%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.profile-container .middle-align {
+    margin-top: 1%;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.floatright {
+    float: right;
+}
+
+/*angular ui pop over*/
+
+.addKeyPopOver .popover {
+    max-width: 100%;
+    width: 40% !important;
+}
+
+.updateKeyPopOver .popover {
+    width: auto !important;
+}
+
+.chartContainer .popover {
+    width: 150% !important;
+}
+
+.popoverFade {
+    /*animate css custom*/
+    -webkit-animation-duration: 0.1s;
+    -moz-animation-duration: 0.1s;
+    animation-duration: 0.1s;
+}
+
+    .popoverFade label {
+        padding: 6px 12px;
+    }
+
+
+/*end angular ui pop over*/
+
+.profile-container .fa {
+    cursor: pointer;
+}
+
+.progress-bar {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+
+.dashboard .companyContainer {
+    text-align: center;
+}
+
+    .dashboard .companyContainer .companyName {
+        color: #545ff6;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+.dashboard .scrollerPanel {
+    max-height: 200px;
+}
+
+.scrollerPanel .row {
+    width: 100%;
+}
+
+.scrollerPanel .media-body {
+    font-size: 12px;
+}
+
+.dashboard .activityContainer ul {
+    display: block !important;
+    list-style-type: none;
+}
+
+.inlineBlock {
+    display: inline !important;
+}
+
+.dashboard .portlet-body {
+    max-height: 250px;
+    min-height: 250px;
+}
+
+.dashboard .statsContainer .fa {
+    font-size: 24px;
+    color: #545ff6;
+}
+
+.dashboard .statsContainer .counter {
+    font-size: 24px;
+    color: #545ff6;
+    font-weight: 400;
+}
+
+.dashboard .statsContainer .orksStats {
+    color: #34c73b !important;
+}
+
+.dashboard .statsContainer .dataBlock {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.dashboard .portlet-heading {
+    padding-bottom: 0px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+
+
+/*dashboard piechart*/
+
+#orksPieChart .legendLabel {
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+#orksPieChart {
+    width: 270px;
+    height: 190px;
+}
+
+    #orksPieChart .flot-base {
+        left: 20px !important;
+    }
+
+
+/*end of piechart*/
+
+.scrollerPanel .objListContainer {
+    padding-left: 1%;
+}
+
+
+.donutChart {
+    height: 230px;
+}
+
+.text-danger {
+    color: #d43f3a !important;
+}
+
+.topHeadAdjust {
+    height: 60.3px;
+}
+
+.AdjustDataTable {
+    padding-right: 85px;
+}
+
+.AdjustLeft {
+    padding-left: 0px;
+}
+
+.AdjustTop {
+    margin-top: 30px;
+}
+
+.edittitlebutton, .editkrbutton, .deletekrbutton,
+.editdescriptionbutton, .editcommentbutton {
+    visibility: hidden;
+}
+
+#displaytitle:hover .edittitlebutton,
+#keyresultlist:hover .editkrbutton,
+#keyresultlist:hover .deletekrbutton,
+.editdescriptiontextarea:hover .editdescriptionbutton,
+#editcommenttemp:hover .editcommentbutton {
+    visibility: visible;
+}
+
+
+.headermenu > li > a:focus {
+    color: #C3C9CE !important;
+}
+
+.BorderZero {
+    border: 0px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+.collapsablePannel .panel-group {
+    /*width: 93%;*/
+    z-index: 100;
+    -webkit-backface-visibility: hidden;
+}
+
+.collapsablePannel .cpanel {
+    height: 230px;
+    overflow-y: scroll;
+}
+
+.gridbox {
+    width: 33%;
+    padding: 1%;
+    float: left;
+}
+
+.example > ul {
+    display: block;
+    width: 500px;
+    margin-bottom: 30px;
+}
+
+.example .-accordion--horizontal {
+    width: auto;
+}
+
+.paddingRight40 {
+    padding-right: 40px;
+}
+
+.selectdd {
+    width: 100%;
+}
+
+.icon-fwd {
+    font-size: 20px;
+    padding-left: 2px;
+}
+
+.icon-bck {
+    font-size: 20px;
+    padding-left: 2px;
+}
+
+.sliderbody-closed .badge {
+    float: left;
+     margin-left:16px;   
+}
+
+.sliderbody-open .badge {
+    float: right;
+     margin-right:16px;
+}
+
+.sliderbody-open .icon-fwd {
+    display: block;
+}
+
+.sliderbody-open .icon-bck {
+    display: none;
+}
+
+.sliderbody-closed .icon-fwd {
+    display: none;
+}
+
+.sliderbody-closed .icon-bck {
+    display: block;
+}
+/*for login page*/
+.marginfix {
+    margin-left: -76px;
+}
+
+.goal-description-display { 
+    display:block;
+    word-wrap:break-word;
+}
+
+.multiSelect button {
+    text-align: left;
+    width: 100%;
+}
+
+.multiSelect .checkboxLayer {
+    width: 100%;
+}
+
+.formTwocol {
+    width: 50%;
+    float: left;
+}
+
+@media only screen and (device-width:768px) {
+    /*.userdtails .col-md-10 {
+            width: 100%;
+            float:left;
+        }*/
+    .userdtails .col-md-12 {
+        width: 100%;
+        float: left;
+    }
+
+    .userdtails .col-md-8 {
+        width: 60%;
+        float: left;
+    }
+
+    .userdtails .col-md-2 {
+        width: 20%;
+        float: left;
+    }
+
+    .formTwocol {
+        width: 100%;
+        float: left;
+    }
+}

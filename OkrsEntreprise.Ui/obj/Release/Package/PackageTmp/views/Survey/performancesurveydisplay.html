@@ -1,0 +1,26 @@
+﻿<div class='row'>
+    <!--<div class="alert alert-danger" ng-show="ErrorMessage != ''">    {{ ErrorMessage }}    </div>-->
+ 
+
+    <table class="table  table-bordered table-striped">
+
+        <tr class="table-header">
+            <th>Performance Evaluation</th>
+            <th ng-repeat="item in survey.options">{{ item.text }}</th>
+            <th>Comments</th>
+        </tr>
+
+        <tr ng-repeat="item in survey.questions">
+
+            <td>{{ item.text }}</td>
+
+            <td ng-repeat="option in survey.options">
+                <span ng-show="option.id == item.surveyoptionid" class="glyphicon glyphicon-ok"></span>
+                <span ng-show="option.id != item.surveyoptionid" class="glyphicon glyphicon-remove"></span>
+            </td>
+
+            <td>{{ item.comment }}</td>
+        </tr>
+    </table>
+
+</div>

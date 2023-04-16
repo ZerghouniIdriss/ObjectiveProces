@@ -1,0 +1,112 @@
+﻿<style>
+.popover{
+    max-width:100%;
+}
+
+</style>
+<!--Page Title-->
+
+<div class="row">
+    <h2>Closed Objectives</h2>
+</div> <!-- / Page Title-->
+ 
+<!-- Search form Row- -->
+<div  class="row"> 
+    <div style="padding-right:18px;" class="col-lg-6 col-md-offset-7">
+        <form class="form-horizontal" name="searchForm">
+            <!-- Search input -->
+            <div class="form-group">
+                <div class="col-xs-8">
+                    <input class="form-control" name="title" placeholder="Search id, title, users, description" type="text" id="title" ng-model="searchformData.title">
+                    <!--<span class="input-group-btn">
+                        <button  type="button" class="btn btn-effect-ripple btn-primary"><i class="fa fa-search"></i></button>
+                    </span>-->
+
+                </div>
+                <div class="col-xs-4">
+                    <button class="btn btn-success   m-b-5" id="btnfilter" popover-animation="true" popover-template="'filter.html'" popover-placement="left-bottom" popover-trigger="click"><i class="fa fa-filter"></i> </button>
+                
+                </div>
+            </div>
+        </form><!-- / Form fields -->
+    </div>
+</div><!-- Search form Row- -->
+
+
+
+<div style="margin-top:30px;" class="row"> 
+
+        <div class="portlet" ng-repeat="item in filteredresult = (closedGoals | filter : {  $ : searchformData.userteam ,  title : searchformData.title, isaligned : searchformData.alignedonly, isprivate : searchformData.privateonly, category : { id : searchformData.category.id }, status : { id : searchformData.status.id  } } | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse)">
+            <objectivebox box-objective="item" data-index="$index" data-deleted="objectiveDeleted"></objectivebox>
+        </div>
+ 
+</div>
+
+
+<div class="row">
+
+    <div class="col-xs-8">
+        <div class="pagination-div">
+
+            <ul class="pagination">
+                <li ng-class="DisablePrevPage()">
+                    <a href ng-click="prevPage()"> Prev</a>
+                </li>
+
+                <li ng-repeat="n in range()"
+                    ng-class="{active: n == currentPage}"
+                    ng-click="setPage(n)">
+                    <a>{{n+1}}</a>
+                </li>
+
+                <li ng-class="DisableNextPage()">
+                    <a href ng-click="nextPage()">Next </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="col-xs-4 text-right table-total-text">
+        <div>Total Records : {{ filteredresult.length }} </div>
+    </div>
+
+
+</div>
+ 
+
+<script type="text/ng-template" id="filter.html">
+    <form class="animated fadeIn popoverFade" role="form">
+        <div class="col-md-12 form-horizontal">
+
+            <div class="form-group">
+                <label class="filter-col" style="margin-right:0;" for="pref-search">User/Team :</label>
+                <input type="text" class="form-control input-sm" id="pref-search" ng-model="searchformData.userteam">
+            </div>
+            <div class="form-group">
+                <label class="filter-col" style="margin-right:0;" for="pref-orderby">Status :</label>
+                <select id="pref-orderby" class="form-control" ng-model="searchformData.status" ng-options="item.title for item in goalstatusList"></select>
+            </div>
+            <div class="form-group">
+                <label class="filter-col" style="margin-right:0;" for="pref-orderby">Category :</label>
+                <select class="form-control" ng-model="searchformData.category" ng-options="item.title for item in goalcatList"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                    <label><input type="checkbox" ng-model="searchformData.privateonlycheckbox" ng-change="privateClicked()"> Private Only </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                    <label><input type="checkbox" ng-model="searchformData.alignedonlycheckbox" ng-change="alignedClicked()">Aligned Only </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success filter-col" ng-click="clearall()">
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </form>
+</script>

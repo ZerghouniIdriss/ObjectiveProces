@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkrsEntreprise.Model", "OkrsEntreprise.Model\OkrsEntreprise.Model.csproj", "{D51A1C08-9337-47B6-8979-EDD10A1029A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkrsEntreprise.DAL", "OkrsEntreprise.DAL\OkrsEntreprise.DAL.csproj", "{D43F60A8-3D23-49CA-98EB-BAD4C0F992B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkrsEntreprise.Services", "OkrsEntreprise.Services\OkrsEntreprise.Services.csproj", "{81315EF2-FEDD-4D05-AAE5-B9D55DE06305}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkrsEntreprise.Ui", "OkrsEntreprise.Ui\OkrsEntreprise.Ui.csproj", "{7DA6639D-5485-47C6-A1C2-56B4EC248FFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkrsEntreprise.Api", "OkrsEntreprise.Api\OkrsEntreprise.Api.csproj", "{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkrsEntreprise.Framework", "OkrsEntreprise.Framework\OkrsEntreprise.Framework.csproj", "{8C6BE518-738E-4925-BEBA-7540676C763C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{620E3196-D9DF-4E87-ABF3-2F268FF821A9}"
+	ProjectSection(SolutionItems) = preProject
+		OkrsEntreprise.DAL\Migrations\MigrationDeploymentSteps.txt = OkrsEntreprise.DAL\Migrations\MigrationDeploymentSteps.txt
+		Step for any new Module.txt = Step for any new Module.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D51A1C08-9337-47B6-8979-EDD10A1029A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51A1C08-9337-47B6-8979-EDD10A1029A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51A1C08-9337-47B6-8979-EDD10A1029A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51A1C08-9337-47B6-8979-EDD10A1029A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D43F60A8-3D23-49CA-98EB-BAD4C0F992B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D43F60A8-3D23-49CA-98EB-BAD4C0F992B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D43F60A8-3D23-49CA-98EB-BAD4C0F992B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D43F60A8-3D23-49CA-98EB-BAD4C0F992B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81315EF2-FEDD-4D05-AAE5-B9D55DE06305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81315EF2-FEDD-4D05-AAE5-B9D55DE06305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81315EF2-FEDD-4D05-AAE5-B9D55DE06305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81315EF2-FEDD-4D05-AAE5-B9D55DE06305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA6639D-5485-47C6-A1C2-56B4EC248FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA6639D-5485-47C6-A1C2-56B4EC248FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA6639D-5485-47C6-A1C2-56B4EC248FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA6639D-5485-47C6-A1C2-56B4EC248FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C6BE518-738E-4925-BEBA-7540676C763C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6BE518-738E-4925-BEBA-7540676C763C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C6BE518-738E-4925-BEBA-7540676C763C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C6BE518-738E-4925-BEBA-7540676C763C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

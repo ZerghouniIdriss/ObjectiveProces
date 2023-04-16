@@ -1,0 +1,97 @@
+﻿
+<div class="portlet">
+
+    <div class="portlet-heading">
+        <div class="text-dark">
+            <div class="portlet-title form-inline">
+                <div class="col-md-12">
+                    <div class="col-md-12 form-group text-left">
+                        <h3>Evaluation Session - #{{ formData.Id }} </h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="pull-left">
+                            Animator : <img class="img-circle profile-img thumb-xs" src="{{ formData.Animator.Avatar }}" alt=""> - {{ formData.Animator.name }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="pull-left">
+                            Attendee : <img class="img-circle profile-img thumb-xs" src="{{ formData.Attendee.Avatar }}" alt=""> - {{ formData.Attendee.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="portlet-widgets">
+            <a>Dated - </a>
+            <a>{{ formData.CreatedDate | date : 'MM/dd/yyyy' }}</a>
+            <span class="divider"></span>
+            <span class="divider"></span>
+            <a>{{ formData.SessionStatus.title }}</a>
+            <span class="divider"></span>
+            <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portletout"><i class="ion-minus-round"></i></a>
+            <span class="divider"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div id="portletout" class="panel-collapse collapse in">
+        <div class="portlet-body">
+
+            <div class="row">
+                <h4>Session Goals</h4>
+            </div>
+
+            <div class="row">
+
+                <div class="portlet" ng-repeat="item in formData.Goals">
+
+                    <div class="portlet-heading">
+                        <div class="text-dark">
+                            <div class="portlet-title form-inline">
+                                <div class="col-md-12">
+                                    <div class="col-md-12 form-group text-left">
+                                        <a href="/index.html#/editgoal/{{ item.id }}">#{{ item.id }}</a> - {{ item.title }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="portlet-widgets">
+                            <a>{{item.status.title }}</a>
+                            <span class="divider"></span>
+                            <a data-toggle="collapse" data-parent="#accordion1" href="/goal#portlet{{$index}}"><i class="ion-minus-round"></i></a>
+                            <span class="divider"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="portlet{{$index}}" class="panel-collapse collapse">
+                        <div class="portlet-body">
+
+                            <div class="form-horizontal">
+
+                                <div class="form-group" ng-repeat="kr in item.keyresults">
+                                    <label class="col-sm-3 control-label">{{ kr.title }}</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <h4>Performance evaluation survey</h4>
+            </div>
+
+            <PerformanceSurveyDisplay selected-answers="formData.Anwers" selected-survey="formData.PerformanceSurvey"></PerformanceSurveyDisplay>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><h4>Employee's Note - {{ formData.AttendeeNote }}</h4></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6"><h4>Manager's Note - {{ formData.AnimatorNote }}</h4></div>
+        </div>
+    </div>
+</div>

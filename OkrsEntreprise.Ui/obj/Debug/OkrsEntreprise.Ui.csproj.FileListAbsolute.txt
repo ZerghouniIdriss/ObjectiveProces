@@ -1,0 +1,6 @@
+C:\Users\Dell\Desktop\OPUI\trunk\OkrsEntreprise.Ui\bin\OkrsEntreprise.Ui.dll.config
+C:\Users\Dell\Desktop\OPUI\trunk\OkrsEntreprise.Ui\bin\OkrsEntreprise.Ui.dll
+C:\Users\Dell\Desktop\OPUI\trunk\OkrsEntreprise.Ui\bin\OkrsEntreprise.Ui.pdb
+C:\Users\Dell\Desktop\OPUI\trunk\OkrsEntreprise.Ui\obj\Debug\OkrsEntreprise.Ui.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Desktop\OPUI\trunk\OkrsEntreprise.Ui\obj\Debug\OkrsEntreprise.Ui.dll
+C:\Users\Dell\Desktop\OPUI\trunk\OkrsEntreprise.Ui\obj\Debug\OkrsEntreprise.Ui.pdb

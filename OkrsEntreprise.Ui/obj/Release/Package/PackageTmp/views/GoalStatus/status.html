@@ -1,0 +1,93 @@
+<!--Page Title-->
+<div class="row">
+    <h2>Status</h2>
+</div>
+<!-- / Page Title-->
+<!--Search form  Row-->
+<div class="row">
+   
+    <div  class="col-lg-6 AdjustDataTable col-md-offset-7">
+        <form class="form-horizontal" name="searchForm" ng-submit="processsearchform()">
+            <!-- Name input -->
+            <div class="form-group">
+                <div class="col-xs-10">
+                    <!--<div class="input-group">-->
+                    <input class="form-control" name="title" placeholder="Search name, name" type="text" id="title" ng-model="searchformData.title">
+                    <!--<span class="input-group-btn">
+                <button type="submit" value="Search" class="btn btn-effect-ripple btn-primary"><i class="fa fa-search"></i></button>
+            </span>-->
+                    <!--</div>-->
+                </div>
+                <div class="col-xs-2">
+                    <!--<input class="btn btn-success" id="btnaddnew" type="button" value="Add New" name="addnew" ng-click="NavigateToNewTeam()">-->
+                    <button class="btn btn-success btn-custom m-b-5" id="btnaddnew" ng-click="NavigateToNewStatus()">+</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--/ Search form  Row-->
+<!--Table Content Row-->
+
+<div class="row AdjustTop">
+    <div class="panel panel-default">
+        <table class="table customTable">
+            <tr class="table-header">
+                <th>Id</th>
+                <th>Name</th>
+        
+            </tr>
+         
+            <tr ng-repeat="item in filteredresult=(goalStatusList|  filter : {  title : searchformData.title} | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage | orderBy:sortType:sortReverse) ">
+                <td>{{item.id}} </td>
+                <td>{{item.title}}</td>
+                
+                <td class="text-center">
+                    <span class="glyphicon glyphicon-edit pointer" style="cursor:pointer;" ng-click="editcategory(item.id)"></span>
+                    <span class="glyphicon glyphicon-remove pointer" style="cursor:pointer;" ng-click="deleteGoalStatus(item.id,$index)"></span>
+                </td>
+            </tr>
+        </table>
+        <!-- / Table -->
+    </div>
+    <!-- / Panel -->
+</div>
+<!-- / row -->
+<!--Table footer Row-->
+<div class="row">
+    <div class="col-xs-8">
+        <div class="pagination-div">
+            <ul class="pagination">
+                <li ng-class="DisablePrevPage()">
+                    <a href ng-click="prevPage()"> Prev</a>
+                </li>
+                <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                    <a>{{n+1}}</a>
+                </li>
+                <li ng-class="DisableNextPage()">
+                    <a href ng-click="nextPage()">Next </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-4 text-right table-total-text">
+        <div>Total Records : {{goalStatusList.length}}</div>
+    </div>
+   
+</div>
+<!-- / row -->
+<script type="text/ng-template" id="deleteConfirmation.html">
+    <div class="animated fadeIn popoverFade">
+        <div class="row">
+            <div class="col-lg-12">
+                <label>Are you sure to delete ?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 pull-right">
+                <button class="btn btn-danger" type="button" ng-click="DoDelete()"><span>Yes</span></button>
+                <button class="btn btn-default" type="button" ng-click="ClosePopOver()"><span>No</span></button>
+            </div>
+        </div>
+    </div>
+</script>
